@@ -1,5 +1,10 @@
 package edu.ucsb.cs56.S13.GEscraper;
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import java.util.*;
+import java.io.*;
+import java.net.*;
+
 
 /** test class for GEscraper
 
@@ -16,10 +21,11 @@ public class GEscraperTest {
     */
     @Test
     public void test_getAreaCourses(){
-
-
-
+	GEscraper g = new GEscraper();
+       	ArrayList<String> s = g.getAreaCourses("B");
+       	String a = s.get(0);
+	String b = "CHIN      3";
+      	assertEquals(a, b);
     }
-
-
+    
 }

@@ -14,7 +14,7 @@ public class GEscraper {
 	
 public static final String urlPrefix = "http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/Area";
 public static final String urlSuffix = ".aspx";
-
+   
 /** get course numbers of gen ed courses in a given area
  @param area one of "B", "C", "D", "E", "F", "G", "H"
  @return array of 13-space course numbers e.g. for area E {"ANTH 138TS","ANTH 176TS",
@@ -24,29 +24,27 @@ public static final String urlSuffix = ".aspx";
 public static ArrayList<String> getAreaCourses(String area) {
 	ArrayList<String> courses=new ArrayList<String>();
 	String url = urlPrefix + area + urlSuffix; //URL with user input
-// parse out the course numbers and stick them into the ArrayList and return the ArrayList
-	String contents="";
-	try{
-		URL htmlcode = new URL(url);
-		URLConnection hc = htmlcode.openConnection();
-		BufferedReader in = new BufferedReader(
-		new InputStreamReader(
-		hc.getInputStream()));
-		String inputLine;
+	String contents = "";
+        try{
+            URL htmlcode = new URL(url);
+            URLConnection hc = htmlcode.openConnection();
+            BufferedReader in = new BufferedReader(new InputStreamReader(hc.getInputStream()));
+            String inputLine;
 
-		while ((inputLine = in.readLine()) != null) 
-		contents=contents+inputLine;
-		in.close();
-	}
-	catch (MalformedURLException e) {
-		System.out.println("MalformedURLException occured");
-		System.exit(1);
-	}
-	catch (IOException e) {
-		System.out.println("IOException occured");
-		System.exit(1);
-	}
-	String[] splitContents=contents.split("<p style=\"text-indent: -10px; margin-top: 0px; margin-bottom: 0px; padding: 0px; margin-left: 23px;\">"); //creates an array of strings that are separated by this string
+            while ((inputLine = in.readLine()) != null)
+                contents=contents+inputLine;
+            in.close();
+        }
+        catch (MalformedURLException e) {
+            System.out.println("MalformedURLException occured");
+            System.exit(1);
+        }
+        catch (IOException e) {
+            System.out.println("IOException occured");
+            System.exit(1);
+        }
+
+        String[] splitContents=contents.split("<p style=\"text-indent: -10px; margin-top: 0px; margin-bottom: 0px; padding: 0px; margin-left: 23px;\">"); //creates an array of strings that are separated by this string          
 
 	String thisPart;
 
@@ -55,7 +53,6 @@ public static ArrayList<String> getAreaCourses(String area) {
 		thisPart=thisPart.replaceAll("- <i>", "break");
 		String[] splitThisPart=thisPart.split("break"); //creates an array of strings that are separated by "break"
 		String courseName=(splitThisPart[0].trim());
-		System.out.println(courseName);   //to see all the courses
 		courses.add(courseName);
 	}
 
@@ -67,7 +64,8 @@ public static ArrayList<String> getAreaCourses(String area) {
 	    Scanner scanner = new Scanner(System.in);
 	    System.out.println("Enter a Subject Area (B-H):");
 	    String s = scanner.next();
-	    getAreaCourses(s);	//takes user input to view what Area they want to see
+	    ArrayList<String> list = getAreaCourses(s);	//takes user input to view what Area they want to see
+	    for(int i=0; i<list.size();i++){ System.out.println(list.get(i));}//print all the courses from arraylist
 	}
 
 }//end GEscraper
