@@ -1,11 +1,16 @@
-package edu.ucsb.cs56.W11.embarnard.mantisTicket89;
+package edu.ucsb.cs56.S13.GEscraper;
 
 import java.net.*;
 import java.io.*;
 import java.util.*;
 import java.util.Scanner;
 
-public class UCSBGenEdAreaListMaker {
+/** GEscraper Class takes classes from a URL and displays them in a list.
+    @author Brian Wan
+    @version 2013.06.07
+*/
+
+public class GEscraper {
 	
 public static final String urlPrefix = "http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/Area";
 public static final String urlSuffix = ".aspx";
@@ -15,12 +20,11 @@ public static final String urlSuffix = ".aspx";
  @return array of 13-space course numbers e.g. for area E {"ANTH 138TS","ANTH 176TS",
  "ARTHI 6A",etc}
  */
+
 public static ArrayList<String> getAreaCourses(String area) {
 	ArrayList<String> courses=new ArrayList<String>();
-	String url = urlPrefix + area + urlSuffix;
-// get the web page at that url
-// parse out the course numbers and stick them into the ArrayList
-// return the ArrayList
+	String url = urlPrefix + area + urlSuffix; //URL with user input
+// parse out the course numbers and stick them into the ArrayList and return the ArrayList
 	String contents="";
 	try{
 		URL htmlcode = new URL(url);
@@ -43,23 +47,27 @@ public static ArrayList<String> getAreaCourses(String area) {
 		System.exit(1);
 	}
 	String[] splitContents=contents.split("<p style=\"text-indent: -10px; margin-top: 0px; margin-bottom: 0px; padding: 0px; margin-left: 23px;\">"); //creates an array of strings that are separated by this string
+
 	String thisPart;
+
 	for (int x=1; x<(splitContents.length); x++) { //we don't care about the first part
 		thisPart=splitContents[x];
 		thisPart=thisPart.replaceAll("- <i>", "break");
 		String[] splitThisPart=thisPart.split("break"); //creates an array of strings that are separated by "break"
 		String courseName=(splitThisPart[0].trim());
-		System.out.println(courseName);   //to see all the courses, un-comment this line
+		System.out.println(courseName);   //to see all the courses
 		courses.add(courseName);
 	}
+
 	return courses;
-}
-	
-	
+
+}//end getAreaCourses
+		
 	public static void main(String args[]){
 	    Scanner scanner = new Scanner(System.in);
 	    System.out.println("Enter a Subject Area (B-H):");
 	    String s = scanner.next();
-	    getAreaCourses(s);	//this is just an arbitrary call to it with area "B" selected, any area can be used
+	    getAreaCourses(s);	//takes user input to view what Area they want to see
 	}
-}
+
+}//end GEscraper
