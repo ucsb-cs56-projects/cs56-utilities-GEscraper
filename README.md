@@ -1,9 +1,11 @@
 cs56-utilities-GEscraper
 ========================
 
-Scrape University of California, Santa Barbara's General Catalog to show General Education Area Course list. (Using https://foo.cs.ucsb.edu/cs56/issues/0000089/)
+Scrape University of California, Santa Barbara's General Catalog to show General Education Area Course list. 
 
-Website for scraping: http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/AreaE.aspx (Areas are changed)
+Website for scraping: http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/AreaE.aspx 
+
+(Example: Area B: will display "CHIN 3", "CHIN 3NH", ... "SPAN 6SS")
 
 Recent Changes
 
