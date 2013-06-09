@@ -5,7 +5,15 @@ Scrape University of California, Santa Barbara's General Catalog to show General
 
 Website for scraping: http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/AreaE.aspx 
 
-(Example: Area B: will display "CHIN 3", "CHIN 3NH", ... "SPAN 6SS")
+Example run to show Area B:
+
+ant run
+"Enter a Subject Area (B-H):" will appear
+Type B
+Hit Enter
+Class will be displayed as "CHIN 3", "CHIN 3NH", ... "SPAN 6SS"
+
+Picture Example: http://imgur.com/Tw30G1m
 
 Recent Changes
 
