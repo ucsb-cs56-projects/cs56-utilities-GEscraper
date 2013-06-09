@@ -8,10 +8,15 @@ Website for scraping: http://my.sa.ucsb.edu/catalog/current/UndergraduateEducati
 Example run to show Area B:
 
 ant run
+
 "Enter a Subject Area (B-H):" will appear
+
 Type B
+
 Hit Enter
+
 Class will be displayed as "CHIN 3", "CHIN 3NH", ... "SPAN 6SS"
+
 
 Picture Example: http://imgur.com/Tw30G1m
 
