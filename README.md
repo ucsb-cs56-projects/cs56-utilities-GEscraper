@@ -1,6 +1,11 @@
 cs56-utilities-GEscraper
 ========================
 
+project history
+===============
+```
+ N/A
+```
 
 Scrape University of California, Santa Barbara's General Catalog to show General Education Area Course list. 
 
