@@ -4,7 +4,7 @@ cs56-utilities-GEscraper
 project history
 ===============
 ```
- N/A
+ YES | mastergberry | Scrape UCSB course pages for appripriate classes that fulfill certain GE requirements
 ```
 
 Scrape University of California, Santa Barbara's General Catalog to show General Education Area Course list. 
