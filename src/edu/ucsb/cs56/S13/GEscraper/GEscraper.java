@@ -6,8 +6,8 @@ import java.util.*;
 import java.util.Scanner;
 
 /** GEscraper Class takes classes from a URL and displays them in a list.
-    @author Brian Wan
-    @version 2013.06.07
+    @author Brent Kirkland, Dylan Lynch 
+    @version 2015.02.24
 */
 
 public class GEscraper {
@@ -21,51 +21,88 @@ public static final String urlSuffix = ".aspx";
  "ARTHI 6A",etc}
  */
 
-public static ArrayList<String> getAreaCourses(String area) {
-	ArrayList<String> courses=new ArrayList<String>();
-	String url = urlPrefix + area + urlSuffix; //URL with user input
-	String contents = "";
-        try{
-            URL htmlcode = new URL(url);
-            URLConnection hc = htmlcode.openConnection();
-            BufferedReader in = new BufferedReader(new InputStreamReader(hc.getInputStream()));
-            String inputLine;
+	public static ArrayList<String> getAreaCourses(String area) {
 
-            while ((inputLine = in.readLine()) != null)
-                contents=contents+inputLine;
-            in.close();
-        }
-        catch (MalformedURLException e) {
-            System.out.println("MalformedURLException occured");
-            System.exit(1);
-        }
-        catch (IOException e) {
-            System.out.println("IOException occured");
-            System.exit(1);
-        }
+		//create an ArrayList to store courses
+		ArrayList<String> courses=new ArrayList<String>();
+	
+		//URL Concatination
+		String url = urlPrefix + area + urlSuffix;
 
-        String[] splitContents=contents.split("<p style=\"text-indent: -10px; margin-top: 0px; margin-bottom: 0px; padding: 0px; margin-left: 23px;\">"); //creates an array of strings that are separated by this string          
+		//empty string to capture each line 
+		String contents = "";
+	
+		//try to connect to URL
+        	try{
 
-	String thisPart;
+            		URL htmlcode = new URL(url);
+            		URLConnection hc = htmlcode.openConnection();
+           	 	BufferedReader in = new BufferedReader(new InputStreamReader(hc.getInputStream()));
+           	 	
+			String read;
 
-	for (int x=1; x<(splitContents.length); x++) { //we don't care about the first part
-		thisPart=splitContents[x];
-		thisPart=thisPart.replaceAll("- <i>", "break");
-		String[] splitThisPart=thisPart.split("break"); //creates an array of strings that are separated by "break"
-		String courseName=(splitThisPart[0].trim());
-		courses.add(courseName);
-	}
+			while ((read = in.readLine()) != null)
+               		 	contents=contents+read;
+            		in.close();
 
-	return courses;
-
-}//end getAreaCourses
+        	}
+		//Catch bad URL
+        	catch (MalformedURLException e) {
+            		System.out.println("Hmmmmm. This area does not exist.");
+            		System.exit(1);
+        	}
+		//catch IOException
+        	catch (IOException e) {
+            		System.out.println("IOException occured. Please try to enter the correct Area");
+            		System.exit(1);
+        	}
+	
+		//create an array of string that are seperated by the html p tag
+        	String[] splitContents = 
+			contents.split("<p style=\"text-indent: -10px; margin-top: 0px; margin-bottom: 0px; padding: 0px; margin-left: 23px;\">");           
+	
+		//String variable to capture specific data
+		String thisPart;
+	
+		//start for loop at x = 1 to skip the html we don't care about	
+		for (int x=1; x<(splitContents.length); x++) { 
 		
-	public static void main(String args[]){
-	    Scanner scanner = new Scanner(System.in);
-	    System.out.println("Enter a Subject Area (B-H):");
-	    String s = scanner.next();
-	    ArrayList<String> list = getAreaCourses(s);	//takes user input to view what Area they want to see
-	    for(int i=0; i<list.size();i++){ System.out.println(list.get(i));}//print all the courses from arraylist
+			//get string
+			thisPart=splitContents[x];
+	
+			//replace unneeded data
+			thisPart=thisPart.replaceAll("- <i>", "break");
+
+			//create a new array of String split by the "break"
+			String[] splitThisPart=thisPart.split("break"); 
+
+			//the first part of array is the coureName
+			String courseName=(splitThisPart[0].trim());
+
+			courses.add(courseName);
+		}
+
+		return courses;
+
 	}
+	
+	//main	
+	public static void main(String args[]){
+
+		//create new scanner
+	    	Scanner scanner = new Scanner(System.in);
+
+		//print command to ask for Subject Area
+	    	System.out.println("Enter a Subject Area (B-H):");
+		
+		//scan for input
+	    	String s = scanner.next();
+	
+		//pass area and get area courses
+	    	ArrayList<String> list = getAreaCourses(s);
+
+		//print all courses from the arraylist that was returned to list with a loop	
+	    	for(int i=0; i<list.size();i++){ System.out.println(list.get(i));}
+	}//end main
 
 }//end GEscraper
