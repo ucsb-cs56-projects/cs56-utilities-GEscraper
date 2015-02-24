@@ -66,18 +66,29 @@ public static final String urlSuffix = ".aspx";
 	
 		//start for loop at x = 1 to skip the html we don't care about	
 		for (int x=1; x<(splitContents.length); x++) { 
-		
+			
+	
 			//get string
 			thisPart=splitContents[x];
 	
 			//replace unneeded data
 			thisPart=thisPart.replaceAll("- <i>", "break");
 
-			//create a new array of String split by the "break"
-			String[] splitThisPart=thisPart.split("break"); 
+			//ensure room for course title
+			//the space before </i> cut down the length before the </i>
+			thisPart= thisPart.replaceAll("                                                                                                                                           </i>","break");
 
+			//create a new array of String split by the "break"
+			String[] splitThisPart=thisPart.split("break");
+
+			//String courseTitle;
+			//for (int j = 2; j < splitThisPart.length; j++){
+			//	if (splitThisPart[j] != null)
+			//} 
+
+			//System.out.println(thisPart);
 			//the first part of array is the coureName
-			String courseName=(splitThisPart[0].trim());
+			String courseName=(splitThisPart[0] + splitThisPart[1]);
 
 			courses.add(courseName);
 		}
