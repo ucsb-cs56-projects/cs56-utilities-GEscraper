@@ -23,17 +23,19 @@ public static final String urlSuffix = ".aspx";
 @return URL with special subject course appended
 */
        public static String getSpecialCoursesURL(String area) {
+			
 			String fullName = "";
-					if (area == "WRT") { return fullName += "WritingReqCourses"; }
-					else if (area == "EUR") { return fullName += "EurTradCourses"; }
-					else if (area == "NWC") { return fullName += "WorldCulturesCourses"; }
-					else if (area == "QNT") { return fullName += "QuantCourses"; }
-					else if (area == "ETH") { return fullName += "EthnicityCourses"; }
+				if (area.equals("WRT")) { fullName += "WritingReqCourses"; }
+				else if (area.equals("EUR")) { fullName += "EurTradCourses"; }
+				else if (area.equals("NWC")) { fullName += "WorldCulturesCourses"; }
+				else if (area.equals("QNT")) { fullName += "QuantCourses"; }
+				else if (area.equals("ETH")) { fullName += "EthnicityCourses"; }
 				//TODO Error handling for incorrect abbreviation input
 
        		String url = urlPrefix + fullName + urlSuffix;
+		System.out.println("SPECIAL: " + url);
        	return url;
-
+	
        }
 
 /** create specific url for area of general ed
