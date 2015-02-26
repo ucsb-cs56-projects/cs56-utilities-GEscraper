@@ -22,7 +22,7 @@ public class GEscraperTest {
     @Test
     public void test_getAreaCourses(){
 	GEscraper g = new GEscraper();
-       	ArrayList<String> s = g.getAreaCourses("B");
+       	ArrayList<String> s = g.getCourses("B");
        	String a = s.get(0);
 	String b = "CHIN      3";
       	assertEquals(a, b);
