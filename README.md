@@ -13,13 +13,13 @@ Website for scraping: http://my.sa.ucsb.edu/catalog/current/UndergraduateEducati
 
 
 Changes by Dylan Lynch and Brent Kirkland
-- Added special subject requirements feature
+- DONE: Added special subject requirements feature
 - TODO: Sorting Options
-- TODO: Reuse
+- DONE: Reuse
 - TODO: Better user documentation
-- Added comments/new javadoc comments
-- Shows names in course lists retrieved from webpages
-- 
+- DONE: Added comments/new javadoc comments
+- DONE: Shows names in course lists retrieved from webpages
+
 
 
 Recent Changes of LAST GROUP
