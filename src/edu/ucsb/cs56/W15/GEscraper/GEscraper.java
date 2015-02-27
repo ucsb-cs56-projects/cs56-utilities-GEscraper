@@ -142,28 +142,15 @@ public static final String urlSuffix = ".aspx";
 	public static void main(String args[]){
 
 		//create new scanner
-	    	Scanner scannerAreaCourses = new Scanner(System.in);
-
+	    	Scanner scanner = new Scanner(System.in);
 		//print command to ask for Subject Area
-	    	System.out.println("Enter a Subject Area (B-H):");
-		
+	    	System.out.println("Enter a Subject Area (B-H) or Special Subject Area (WRT, EUR, NWC, QNT, ETH):");
 		//scan for input
-	    	String s = scannerAreaCourses.next();
-	
+	    	String s = scanner.next();
 		//pass area and get area courses
 	    	ArrayList<String> list = getCourses(s);
-
 		//print all courses from the arraylist that was returned to list with a loop	
 	    	for(int i=0; i<list.size();i++){ System.out.println(list.get(i));}
-
-	    	System.out.println("");
-
-
-	    	Scanner scannerSpecialCourses = new Scanner(System.in);
-	    	System.out.println("Enter a Special Subject Area (WRT, EUR, NWC, QNT, ETH):");
-	    	s = scannerSpecialCourses.next();
-	    	ArrayList<String> list2 = getCourses(s);
-	    	for(int i=0; i<list2.size();i++){ System.out.println(list2.get(i));}
 
 	}//end main
 

@@ -11,8 +11,18 @@ Scrape University of California, Santa Barbara's General Catalog to show General
 
 Website for scraping: http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/AreaE.aspx 
 
-Recent Changes
 
+Changes by Dylan Lynch and Brent Kirkland
+- Added special subject requirements feature
+- TODO: Sorting Options
+- TODO: Reuse
+- TODO: Better user documentation
+- Added comments/new javadoc comments
+- Shows names in course lists retrieved from webpages
+- 
+
+
+Recent Changes of LAST GROUP
 -Improved Javadoc
 -Added JUnit Tests
 -Refactored files for Git
@@ -24,7 +34,7 @@ Example run to show Area B:
 
 ant run
 
-"Enter a Subject Area (B-H):" will appear
+"Enter a Subject Area (B-H)" will appear
 
 Type B
 
