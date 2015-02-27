@@ -24,13 +24,19 @@ public static final String urlSuffix = ".aspx";
 */
        public static String getSpecialCoursesURL(String area) {
 			
-			String fullName = "";
-				if (area.equals("WRT")) { fullName += "WritingReqCourses"; }
-				else if (area.equals("EUR")) { fullName += "EurTradCourses"; }
-				else if (area.equals("NWC")) { fullName += "WorldCulturesCourses"; }
-				else if (area.equals("QNT")) { fullName += "QuantCourses"; }
-				else if (area.equals("ETH")) { fullName += "EthnicityCourses"; }
-				//TODO Error handling for incorrect abbreviation input
+		String fullName = "";
+		
+		if (area.equals("WRT")) { 
+			fullName += "WritingReqCourses"; 
+		}
+		
+		else if (area.equals("EUR")) { 
+			fullName += "EurTradCourses"; 
+		}
+		else if (area.equals("NWC")) { fullName += "WorldCulturesCourses"; }
+		else if (area.equals("QNT")) { fullName += "QuantCourses"; }
+		else if (area.equals("ETH")) { fullName += "EthnicityCourses"; }
+		//TODO Error handling for incorrect abbreviation input
 
        		String url = urlPrefix + fullName + urlSuffix;
 		System.out.println("SPECIAL: " + url);
