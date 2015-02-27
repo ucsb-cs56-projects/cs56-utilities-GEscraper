@@ -24,19 +24,13 @@ public static final String urlSuffix = ".aspx";
 */
        public static String getSpecialCoursesURL(String area) {
 			
-		String fullName = "";
-		
-		if (area.equals("WRT")) { 
-			fullName += "WritingReqCourses"; 
-		}
-		
-		else if (area.equals("EUR")) { 
-			fullName += "EurTradCourses"; 
-		}
-		else if (area.equals("NWC")) { fullName += "WorldCulturesCourses"; }
-		else if (area.equals("QNT")) { fullName += "QuantCourses"; }
-		else if (area.equals("ETH")) { fullName += "EthnicityCourses"; }
-		//TODO Error handling for incorrect abbreviation input
+			String fullName = "";
+				if (area.equals("WRT")) { fullName += "WritingReqCourses"; }
+				else if (area.equals("EUR")) { fullName += "EurTradCourses"; }
+				else if (area.equals("NWC")) { fullName += "WorldCulturesCourses"; }
+				else if (area.equals("QNT")) { fullName += "QuantCourses"; }
+				else if (area.equals("ETH")) { fullName += "EthnicityCourses"; }
+				//TODO Error handling for incorrect abbreviation input
 
        		String url = urlPrefix + fullName + urlSuffix;
 		System.out.println("SPECIAL: " + url);
@@ -145,17 +139,26 @@ public static final String urlSuffix = ".aspx";
 	
 	//main	
 	public static void main(String args[]){
+		boolean loop = true;
+		String s;
 
+		while (loop == true) {
 		//create new scanner
 	    	Scanner scanner = new Scanner(System.in);
 		//print command to ask for Subject Area
 	    	System.out.println("Enter a Subject Area (B-H) or Special Subject Area (WRT, EUR, NWC, QNT, ETH):");
 		//scan for input
-	    	String s = scanner.next();
+	    	s = scanner.next();
 		//pass area and get area courses
 	    	ArrayList<String> list = getCourses(s);
 		//print all courses from the arraylist that was returned to list with a loop	
 	    	for(int i=0; i<list.size();i++){ System.out.println(list.get(i));}
+
+	    	System.out.println("Scrape again? Y/N");
+	    	s = scanner.next();
+
+	    	if (s.equals("N")) { loop = false; }
+	    }
 
 	}//end main
 
