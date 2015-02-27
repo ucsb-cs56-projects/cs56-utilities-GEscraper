@@ -146,15 +146,33 @@ public static final String urlSuffix = ".aspx";
 		//create new scanner
 	    	Scanner scanner = new Scanner(System.in);
 		//print command to ask for Subject Area
-	    	System.out.println("Enter a Subject Area (B-H) or Special Subject Area (WRT, EUR, NWC, QNT, ETH):");
+	    	System.out.println("Enter a Subject Area (B-H) or Special Subject Area (WRT, EUR, NWC, QNT, ETH) or HELP for Info:");
 		//scan for input
 	    	s = scanner.next();
+	   	//List Help information for user
+	    	if (s.equals("HELP")) {
+	    		System.out.println("Accepted Inputs");
+	    		System.out.println("B = Area B Courses");
+	    		System.out.println("C = Area C Courses");
+	    		System.out.println("D = Area D Courses");
+	    		System.out.println("E = Area E Courses");
+	    		System.out.println("F = Area F Courses");
+	    		System.out.println("G = Area G Courses");
+	    		System.out.println("H = Area H Courses");
+	    		System.out.println("WRT = Writing Courses");
+	    		System.out.println("EUR = European Courses");
+	    		System.out.println("NWC = World Cultures Courses");
+	    		System.out.println("QNT = Quantitative Courses");
+	    		System.out.println("ETH = Ethnicity Courses");
+	    	}
+	    	else {
 		//pass area and get area courses
-	    	ArrayList<String> list = getCourses(s);
+	    		ArrayList<String> list = getCourses(s);
 		//print all courses from the arraylist that was returned to list with a loop	
-	    	for(int i=0; i<list.size();i++){ System.out.println(list.get(i));}
-
-	    	System.out.println("Scrape again? Y/N");
+	    		for(int i=0; i<list.size();i++){ System.out.println(list.get(i)); }
+	    	}
+	    
+	    	System.out.println("Scrape? Y/N");
 	    	s = scanner.next();
 
 	    	if (s.equals("N")) { loop = false; }
