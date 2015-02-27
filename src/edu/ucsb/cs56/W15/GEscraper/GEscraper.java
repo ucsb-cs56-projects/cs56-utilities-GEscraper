@@ -20,7 +20,7 @@ public static final String urlSuffix = ".aspx";
 
 /** replace special subject course abbreviations with their URL counterpart, then create URL
 @param special subject course abbreviations: "WRT", "EUR", "NWC", "QNT", "ETH"
-@return URL with special subject course appended
+@return url with specified special subject courses
 */
        public static String getSpecialCoursesURL(String area) {
 			
@@ -40,7 +40,7 @@ public static final String urlSuffix = ".aspx";
 
 /** create specific url for area of general ed
 @param Specific area "B", "C", "D", "E", "F", "G", "H"
-@return URL with specific area appended into it
+@return url for specified general area courses
 */
        public static String getAreaCoursesURL(String area) {
        		String url = urlPrefix + "Area" + area + urlSuffix;
@@ -51,8 +51,7 @@ public static final String urlSuffix = ".aspx";
    
 /** get course numbers of gen ed courses in a given area
  @param area as B->H or Special Subject Abbreviation: "WRT", "EUR", "NWC", "QNT", "ETH"
- @return array of 13-space course numbers e.g. for area E {"ANTH 138TS","ANTH 176TS",
- "ARTHI 6A",etc}
+ @return array list of all courses with { Course Abbreviation, Course Number, Full Course Name }
  */
 
 	public static ArrayList<String> getCourses(String area) {
@@ -62,7 +61,7 @@ public static final String urlSuffix = ".aspx";
 		if (area.length() == 1) { 
 			url = getAreaCoursesURL(area); 
 		}
-		else if (area.length() > 1) { 
+		else if (area.length() == 3) { 
 			url = getSpecialCoursesURL(area); 
 		}
 
@@ -80,10 +79,10 @@ public static final String urlSuffix = ".aspx";
             	URLConnection hc = htmlcode.openConnection();
            	 	BufferedReader in = new BufferedReader(new InputStreamReader(hc.getInputStream()));
            	 	
-			String read;
+				String read;
 
-			while ((read = in.readLine()) != null)
-               		 	contents=contents+read;
+				while ((read = in.readLine()) != null)
+               		contents=contents+read;
             		in.close();
 
         	}
