@@ -33,7 +33,6 @@ public static final String urlSuffix = ".aspx";
 				//TODO Error handling for incorrect abbreviation input
 
        		String url = urlPrefix + fullName + urlSuffix;
-		System.out.println("SPECIAL: " + url);
        	return url;
 	
        }
@@ -88,12 +87,12 @@ public static final String urlSuffix = ".aspx";
         	}
 		//Catch bad URL
         	catch (MalformedURLException e) {
-            		System.out.println("Hmmmmm. This area does not exist.");
+            		System.out.println("Area does not exist.");
             		System.exit(1);
         	}
 		//catch IOException
       		catch (IOException e) {
-            		System.out.println("IOException occured. Please try to enter the correct Area");
+            		System.out.println("Incorrect area.");
             		System.exit(1);
         	}
 	
@@ -142,6 +141,7 @@ public static final String urlSuffix = ".aspx";
 		boolean loop = true;
 		String s;
 
+		// While loop to keep running the program unless the user inputs No (N)
 		while (loop == true) {
 		//create new scanner
 	    	Scanner scanner = new Scanner(System.in);
@@ -151,7 +151,8 @@ public static final String urlSuffix = ".aspx";
 	    	s = scanner.next();
 	   	//List Help information for user
 	    	if (s.equals("HELP")) {
-	    		System.out.println("Accepted Inputs");
+	    		System.out.println("Accepted Inputs:");
+	    		System.out.println("Input = Course List Result");
 	    		System.out.println("B = Area B Courses");
 	    		System.out.println("C = Area C Courses");
 	    		System.out.println("D = Area D Courses");
@@ -171,11 +172,11 @@ public static final String urlSuffix = ".aspx";
 		//print all courses from the arraylist that was returned to list with a loop	
 	    		for(int i=0; i<list.size();i++){ System.out.println(list.get(i)); }
 	    	}
-	    
-	    	System.out.println("Scrape? Y/N");
-	    	s = scanner.next();
 
-	    	if (s.equals("N")) { loop = false; }
+	    // Prompts user to Scrape again, reads input and acts accordingly
+	    System.out.println("Scrape? Y/N");
+	    s = scanner.next();
+	    if (s.equals("N")) { loop = false; }
 	    }
 
 	}//end main
