@@ -161,7 +161,7 @@ public static final String urlSuffix = ".aspx";
 	public static void main(String args[]){
 		boolean loop = true;
 		ArrayList<String> list = new ArrayList<String>();
-		String area, subject;
+		String area, department;
 
 		// While loop to keep running the program unless the user inputs No (N)
 		while (loop == true) {
