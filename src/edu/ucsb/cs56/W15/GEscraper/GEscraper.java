@@ -6,21 +6,23 @@ import java.util.*;
 import java.util.Scanner;
 
 /** GEscraper Class takes classes from a URL and displays them in a list.
-    @author Brent Kirkland, Dylan Lynch 
-    @version 2015.02.24
+    @author Brent Kirkland 
+    @author Dylan Lynch 
+    @version 03.04.15
 */
 
 public class GEscraper {
 	
 
-public static final String urlPrefix = "http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/";
+public static final String urlPrefix = 
+	"http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/";
 public static final String urlSuffix = ".aspx";
 
 
 
-/** replace special subject course abbreviations with their URL counterpart, then create URL
-@param special subject course abbreviations: "WRT", "EUR", "NWC", "QNT", "ETH"
-@return url with specified special subject courses
+/** create special subject url 
+	@param special subject course abbreviations: "WRT", "EUR", "NWC", "QNT", "ETH"
+	@return url with specified special subject courses
 */
        public static String getSpecialCoursesURL(String area) {
 			
@@ -47,8 +49,27 @@ public static final String urlSuffix = ".aspx";
        }
 
 
+/** Gets all specified department courses from specified area
+@param General/Special Area, Subject
+@return ArrayList of all courses from specific area and department
+*/
+
+	public static ArrayList<String> getSpecificCourses(String area, String department) {
+		GEscraper g = new GEscraper();
+		ArrayList<String> areaCourses = g.getCourses(area);
+		ArrayList<String> subjectCourses = new ArrayList<String>();
+
+		for (int i = 0; i <= areaCourses.size() - 1; i++) {
+			if (areaCourses.get(i).contains(department)) {
+				subjectCourses.add(areaCourses.get(i));
+			}
+		}
+
+		return subjectCourses;
+	}
+
    
-/** get course numbers of gen ed courses in a given area
+/** get course numbers of gen/special subject courses in a given area
  @param area as B->H or Special Subject Abbreviation: "WRT", "EUR", "NWC", "QNT", "ETH"
  @return array list of all courses with { Course Abbreviation, Course Number, Full Course Name }
  */
@@ -139,19 +160,20 @@ public static final String urlSuffix = ".aspx";
 	//main	
 	public static void main(String args[]){
 		boolean loop = true;
-		String s;
+		ArrayList<String> list = new ArrayList<String>();
+		String area, department;
 
 		// While loop to keep running the program unless the user inputs No (N)
 		while (loop == true) {
 		//create new scanner
 	    	Scanner scanner = new Scanner(System.in);
 		//print command to ask for Subject Area
-	    	System.out.println("Enter a Subject Area (B-H) or Special Subject Area (WRT, EUR, NWC, QNT, ETH) or HELP for Info:");
+	    	System.out.println("Enter a Subject Area (B-H) or Special Subject Area (WRT, EUR, NWC, QNT, ETH)");
 		//scan for input
-	    	s = scanner.next();
-	   	//List Help information for user
-	    	if (s.equals("HELP")) {
-	    		System.out.println("Accepted Inputs:");
+	    	area = scanner.next();
+	   	//List HELP information
+	    	if (area.equals("HELP")) {
+	    		System.out.println("General/Special Subject Area Inputs:");
 	    		System.out.println("Input = Course List Result");
 	    		System.out.println("B = Area B Courses");
 	    		System.out.println("C = Area C Courses");
@@ -168,15 +190,34 @@ public static final String urlSuffix = ".aspx";
 	    	}
 	    	else {
 		//pass area and get area courses
-	    		ArrayList<String> list = getCourses(s);
-		//print all courses from the arraylist that was returned to list with a loop	
-	    		for(int i=0; i<list.size();i++){ System.out.println(list.get(i)); }
+	    		System.out.println(
+	    			"Enter a specific department, or NO. Enter SUBJECTS for examples.");
+	    		department = scanner.next();
+
+	    		if (department.equals("SUBJECTS")) {
+	    			System.out.println("Subject Inputs: TODO");	
+	    			//TODO Scrape and add list of department translations from:
+	    			//http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/subj_area_trans.aspx
+	    		}
+	    		else if (department.equals("NO")) {
+	    			list = getCourses(area);
+	    		}
+	    		else {
+	    			list = getSpecificCourses(area, department);
+	    		}
+	    		if (list.size() == 0) {
+	    		 // Incorrect department abbreviation error will be handled when scraper method
+	    		 // for department translations is implemented
+	    		 System.out.println("No courses fulfill selected area and requirement OR Incorrect Subject Abbreviation"); 
+	    		}
+
+	    		for(int i=0; i<list.size(); i++){ System.out.println(list.get(i)); }
 	    	}
 
-	    // Prompts user to Scrape again, reads input and acts accordingly
+	    // Prompts user to Scrape again
 	    System.out.println("Scrape? Y/N");
-	    s = scanner.next();
-	    if (s.equals("N")) { loop = false; }
+	    area = scanner.next();
+	    if (area.equals("N")) { loop = false; }
 	    }
 
 	}//end main
