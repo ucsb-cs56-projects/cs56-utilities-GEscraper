@@ -9,17 +9,17 @@ project history
 
 Scrape University of California, Santa Barbara's General Catalog to show General Education Area Course list. 
 
-Website for scraping: http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/AreaE.aspx 
+The user has the option to either see the entire courselist of an area OR the a specific department within the area.
 
+Website for scraping: http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/AreaE.aspx 
 
 Changes by Dylan Lynch and Brent Kirkland
 - DONE: Added special subject requirements feature
-- TODO: Sorting Options
+- DONE: Added specify department feature
 - DONE: Reuse
-- TODO: Better user documentation
+- DONE: Better user documentation (Improved README)
 - DONE: Added comments/new javadoc comments
 - DONE: Shows names in course lists retrieved from webpages
-
 
 
 Recent Changes of LAST GROUP
@@ -29,17 +29,3 @@ Recent Changes of LAST GROUP
 -Fixed missing class case
 -Added User interaction to input an Area (eg "B", "C")
 
-
-Example run to show Area B:
-
-ant run
-
-"Enter a Subject Area (B-H)" will appear
-
-Type B
-
-Hit Enter
-
-Class will be displayed as "CHIN 3", "CHIN 3NH", ... "SPAN 6SS"
-
-Picture Example: http://imgur.com/Tw30G1m
