@@ -49,18 +49,18 @@ public static final String urlSuffix = ".aspx";
        }
 
 
-/** Gets all specified subject courses from specified area
+/** Gets all specified department courses from specified area
 @param General/Special Area, Subject
-@return ArrayList of all courses from specific area and subject
+@return ArrayList of all courses from specific area and department
 */
 
-	public static ArrayList<String> getSpecificCourses(String area, String subject) {
+	public static ArrayList<String> getSpecificCourses(String area, String department) {
 		GEscraper g = new GEscraper();
 		ArrayList<String> areaCourses = g.getCourses(area);
 		ArrayList<String> subjectCourses = new ArrayList<String>();
 
 		for (int i = 0; i <= areaCourses.size() - 1; i++) {
-			if (areaCourses.get(i).contains(subject)) {
+			if (areaCourses.get(i).contains(department)) {
 				subjectCourses.add(areaCourses.get(i));
 			}
 		}
@@ -191,23 +191,23 @@ public static final String urlSuffix = ".aspx";
 	    	else {
 		//pass area and get area courses
 	    		System.out.println(
-	    			"Enter a specific subject, or NO. Enter SUBJECTS for examples.");
-	    		subject = scanner.next();
+	    			"Enter a specific department, or NO. Enter SUBJECTS for examples.");
+	    		department = scanner.next();
 
-	    		if (subject.equals("SUBJECTS")) {
+	    		if (department.equals("SUBJECTS")) {
 	    			System.out.println("Subject Inputs: TODO");	
-	    			//TODO Scrape and add list of subject translations from:
+	    			//TODO Scrape and add list of department translations from:
 	    			//http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/subj_area_trans.aspx
 	    		}
-	    		else if (subject.equals("NO")) {
+	    		else if (department.equals("NO")) {
 	    			list = getCourses(area);
 	    		}
 	    		else {
-	    			list = getSpecificCourses(area, subject);
+	    			list = getSpecificCourses(area, department);
 	    		}
 	    		if (list.size() == 0) {
-	    		 // Incorrect subject abbreviation error will be handled when scraper method
-	    		 // for subject translations is implemented
+	    		 // Incorrect department abbreviation error will be handled when scraper method
+	    		 // for department translations is implemented
 	    		 System.out.println("No courses fulfill selected area and requirement OR Incorrect Subject Abbreviation"); 
 	    		}
 
