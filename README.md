@@ -1,8 +1,8 @@
 cs56-utilities-GEscraper
 ========================
 
-project history
-===============
+Project History
+---------------
 ```
  YES | mastergberry | Scrape UCSB course pages for appripriate classes that fulfill certain GE requirements
 ```
@@ -13,7 +13,7 @@ The user has the option to either see the entire courselist of an area OR the a 
 
 Website for scraping: http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/AreaE.aspx 
 
-Changes by Dylan Lynch and Brent Kirkland
+*Changes by Dylan Lynch and Brent Kirkland*
 - DONE: Added special subject requirements feature
 - DONE: Added specify department feature
 - DONE: Reuse
