@@ -157,6 +157,61 @@ public static final String urlSuffix = ".aspx";
 
 	}
 	
+
+/** Get all departments for ease searching
+ *  @return Arraylist of ArrayList holding the course acronym and course name 
+ */
+	public static ArrayList<ArrayList<String>> getDepartments(){
+		//url for all subjects
+		String url = "http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/subj_area_trans.aspx";
+	
+		//Create an ArrayList of Arraylist to store values
+		ArrayList<ArrayList<String>> outer = new ArrayList<ArrayList<String>>();
+
+		//empty string to capture each line
+		String contents = "";
+
+		try {
+			URL htmlcode = new URL(url);
+			URLConnection hc = htmlcode.openConnection();
+			BufferedReader in = new BufferedReader(new InputStreamReader(hc.getInputStream()));
+			String read;
+			boolean rd = false;
+			while((read = in.readLine()) != null){
+				if (read.contains("</div>")){ rd = false; }
+				if (rd){
+					ArrayList<String> inner = new ArrayList<String>();		
+					read = read.substring(0, read.length()-4);
+					String[] splitThisPart = read.split(" - ");
+					inner.add(splitThisPart[0]);
+					inner.add(splitThisPart[1]);
+					outer.add(inner);
+				}
+				if (read.contains("    <p>Anthropology - ANTH<br>")) { 
+					rd = true;
+					ArrayList<String> inner = new ArrayList<String>();
+                                	read = read.substring(7, read.length()-4);
+                                	String[] splitThisPart = read.split(" - ");
+                                	inner.add(splitThisPart[0]);
+                                	inner.add(splitThisPart[1]);
+                                	outer.add(inner);
+		 
+				}
+			}
+			in.close();
+
+		} catch(MalformedURLException e) {
+			System.out.println("Seems like the subject URL has moved");
+			System.exit(1);
+
+		} catch(IOException e){
+			System.out.println("Check yo internet yo!");
+		
+		}
+		return outer;
+
+	}
+
 	//main	
 	public static void main(String args[]){
 		boolean loop = true;
@@ -168,7 +223,7 @@ public static final String urlSuffix = ".aspx";
 		//create new scanner
 	    	Scanner scanner = new Scanner(System.in);
 		//print command to ask for Subject Area
-	    	System.out.println("Enter a Subject Area (B-H) or Special Subject Area (WRT, EUR, NWC, QNT, ETH)");
+	    	System.out.println("Enter a Subject Area (B-H or WRT, EUR, NWC, QNT, ETH) or enter HELP for a list of all areas and courses");
 		//scan for input
 	    	area = scanner.next();
 	   	//List HELP information
@@ -187,19 +242,20 @@ public static final String urlSuffix = ".aspx";
 	    		System.out.println("NWC = World Cultures Courses");
 	    		System.out.println("QNT = Quantitative Courses");
 	    		System.out.println("ETH = Ethnicity Courses");
+
+			ArrayList<ArrayList<String>> departments = getDepartments();
+                        ArrayList<String> departmentt;
+                        for (int i = 0; i < departments.size(); i++) {
+                                departmentt = departments.get(i);
+                                System.out.println(departmentt.get(0) + " = " + departmentt.get(1));
+			}
+
 	    	}
 	    	else {
 		//pass area and get area courses
-	    		System.out.println(
-	    			"Enter a specific department, or NO. Enter SUBJECTS for examples.");
 	    		department = scanner.next();
 
-	    		if (department.equals("SUBJECTS")) {
-	    			System.out.println("Subject Inputs: TODO");	
-	    			//TODO Scrape and add list of department translations from:
-	    			//http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/subj_area_trans.aspx
-	    		}
-	    		else if (department.equals("NO")) {
+			if (department.equals("NO")) {
 	    			list = getCourses(area);
 	    		}
 	    		else {
