@@ -1,7 +1,7 @@
 cs56-utilities-GEscraper
 ========================
 
-Project History
+Project Information
 ---------------
 ```
  YES | mastergberry | Scrape UCSB course pages for appripriate classes that fulfill certain GE requirements
