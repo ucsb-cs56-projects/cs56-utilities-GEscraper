@@ -113,7 +113,7 @@ public static final String urlSuffix = ".aspx";
         	}
 		//catch IOException
       		catch (IOException e) {
-            		System.out.println("Incorrect area.");
+            		System.out.println("Check Internet.");
             		System.exit(1);
         	}
 	
@@ -218,63 +218,60 @@ public static final String urlSuffix = ".aspx";
 		ArrayList<String> list = new ArrayList<String>();
 		String area, department;
 
-		// While loop to keep running the program unless the user inputs No (N)
 		while (loop == true) {
-		//create new scanner
-	    	Scanner scanner = new Scanner(System.in);
-		//print command to ask for Subject Area
+			Scanner areaScanner = new Scanner(System.in);
+	        Scanner departmentScanner = new Scanner(System.in);
+
 	    	System.out.println("Enter a Subject Area (B-H or WRT, EUR, NWC, QNT, ETH) or enter HELP for a list of all areas and courses");
-		//scan for input
-	    	area = scanner.next();
-	   	//List HELP information
+	    	area = areaScanner.next();
+
 	    	if (area.equals("HELP")) {
 	    		System.out.println("General/Special Subject Area Inputs:");
 	    		System.out.println("Input = Course List Result");
-	    		System.out.println("B = Area B Courses");
-	    		System.out.println("C = Area C Courses");
-	    		System.out.println("D = Area D Courses");
-	    		System.out.println("E = Area E Courses");
-	    		System.out.println("F = Area F Courses");
-	    		System.out.println("G = Area G Courses");
-	    		System.out.println("H = Area H Courses");
-	    		System.out.println("WRT = Writing Courses");
-	    		System.out.println("EUR = European Courses");
-	    		System.out.println("NWC = World Cultures Courses");
-	    		System.out.println("QNT = Quantitative Courses");
-	    		System.out.println("ETH = Ethnicity Courses");
+	    		System.out.println("Area B Courses = B");
+	    		System.out.println("Area C Courses = C");
+	    		System.out.println("Area D Courses = D");
+	    		System.out.println("Area E Courses = E");
+	    		System.out.println("Area F Courses = F");
+	    		System.out.println("Area G Courses = G");
+	    		System.out.println("Area H Courses = H");
+	    		System.out.println("Writing Courses = WRT");
+	    		System.out.println("European Courses = EUR");
+	    		System.out.println("World Cultures Courses = NWC");
+	    		System.out.println("Quantitative Courses = QNT");
+	    		System.out.println("Ethnicity Courses = ETH");
 
 			ArrayList<ArrayList<String>> departments = getDepartments();
                         ArrayList<String> departmentt;
                         for (int i = 0; i < departments.size(); i++) {
                                 departmentt = departments.get(i);
                                 System.out.println(departmentt.get(0) + " = " + departmentt.get(1));
-			}
+                            }
 
-	    	}
-	    	else {
-		//pass area and get area courses
-	    		department = scanner.next();
+            System.out.println("Enter a Subject Area: ");
+            area = areaScanner.next();
+             }
 
-			if (department.equals("NO")) {
-	    			list = getCourses(area);
-	    		}
-	    		else {
-	    			list = getSpecificCourses(area, department);
-	    		}
-	    		if (list.size() == 0) {
-	    		 // Incorrect department abbreviation error will be handled when scraper method
-	    		 // for department translations is implemented
-	    		 System.out.println("No courses fulfill selected area and requirement OR Incorrect Subject Abbreviation"); 
-	    		}
+           	System.out.println("Enter a specific department abbrevation or N (No): ");
+           	department = departmentScanner.next();
 
-	    		for(int i=0; i<list.size(); i++){ System.out.println(list.get(i)); }
-	    	}
 
-	    // Prompts user to Scrape again
-	    System.out.println("Scrape? Y/N");
-	    area = scanner.next();
-	    if (area.equals("N")) { loop = false; }
-	    }
+           	if (department.equals("N")) {
+           		list = getCourses(area);
+           	}
+           	else { 
+           		list = getSpecificCourses(area, department);
+
+           	}
+
+       		for(int i=0; i<list.size(); i++){ System.out.println(list.get(i)); }
+			
+			System.out.println("Scrape? Y/N");
+	    	area = areaScanner.next();
+	   	    if (area.equals("N")) { loop = false; }
+		}	    
+	   
+	    
 
 	}//end main
 
