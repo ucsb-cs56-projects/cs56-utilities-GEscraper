@@ -14,7 +14,7 @@ The user has the option to either see the entire courselist of an area OR the a 
 
 ####What's being scraped?
 -------------------------------
-Website for scraping: http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/AreaE.aspx 
+The current website of UCSB that is being scraped is: http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/AreaE.aspx 
 
 ####Who made what changed?
 ----------------------------------
