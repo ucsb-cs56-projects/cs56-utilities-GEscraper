@@ -19,15 +19,15 @@ The current website of UCSB that is being scraped is: http://my.sa.ucsb.edu/cata
 ####Who made what changed?
 ----------------------------------
 *Changes by Dylan Lynch and Brent Kirkland*
-- **DONE**: Added special subject requirements feature
-- **DONE**: Added specify department feature
-- **DONE**: Reuse
-- **DONE**: Better user documentation (Improved README)
-- **DONE**: Added comments/new javadoc comments
-- **DONE**: Shows names in course lists retrieved from webpages
+- **DONE**: [Test for getting a specific department from an area](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/11) - *50 pts*
+- **DONE**: (Help Feature)[https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/10] - *100 pts*
+- **DONE**: (Better Formatting - Usability)[https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/8] - *100 pts*
+- **DONE**: (Better user documentation)[https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/5] - *100 pts*
+- **DONE**: (Allow for more sorting options)[https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/6] - *200 pts*
+- **DONE**: (Allow reuse)[https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/4] - *50*
+- **DONE**: (Beautification - updated comments,  future refractoring, and readme (beautiful, right?))[https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/14] - *25 pts*
 
-
-#####Recent Changes of LAST GROUP
+*Recent Changes of LAST GROUP*
 -Improved Javadoc
 -Added JUnit Tests
 -Refactored files for Git
