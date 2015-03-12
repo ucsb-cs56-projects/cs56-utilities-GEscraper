@@ -29,9 +29,9 @@ The current website of UCSB that is being scraped is: http://my.sa.ucsb.edu/cata
 
 *Recent Changes of LAST GROUP*
 
--Improved Javadoc
--Added JUnit Tests
--Refactored files for Git
--Fixed missing class case
--Added User interaction to input an Area (eg "B", "C")
+- Improved Javadoc
+- Added JUnit Tests
+- Refactored files for Git
+- Fixed missing class case
+- Added User interaction to input an Area (eg "B", "C")
 
