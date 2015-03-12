@@ -17,13 +17,14 @@ The user has the option to either see the entire courselist of an area OR the a 
 Website for scraping: http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/AreaE.aspx 
 
 ####Who made what changed?
+----------------------------------
 *Changes by Dylan Lynch and Brent Kirkland*
-- DONE: Added special subject requirements feature
-- DONE: Added specify department feature
-- DONE: Reuse
-- DONE: Better user documentation (Improved README)
-- DONE: Added comments/new javadoc comments
-- DONE: Shows names in course lists retrieved from webpages
+- **DONE**: Added special subject requirements feature
+- **DONE**: Added specify department feature
+- **DONE**: Reuse
+- **DONE**: Better user documentation (Improved README)
+- **DONE**: Added comments/new javadoc comments
+- **DONE**: Shows names in course lists retrieved from webpages
 
 
 #####Recent Changes of LAST GROUP
