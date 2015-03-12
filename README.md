@@ -28,6 +28,7 @@ The current website of UCSB that is being scraped is: http://my.sa.ucsb.edu/cata
 - **DONE**: [Beautification - updated comments,  future refractoring, and readme (beautiful, right?)](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/14) - *25 pts*
 
 *Recent Changes of LAST GROUP*
+
 -Improved Javadoc
 -Added JUnit Tests
 -Refactored files for Git
