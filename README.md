@@ -6,24 +6,27 @@ Project History
 ```
  YES | mastergberry | Scrape UCSB course pages for appripriate classes that fulfill certain GE requirements
 ```
-
+####Purpose
+------------------
 Scrape University of California, Santa Barbara's General Catalog to show General Education Area Course list. 
 
 The user has the option to either see the entire courselist of an area OR the a specific department within the area.
 
+####What's being scraped?
+-------------------------------
 Website for scraping: http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/AreaE.aspx 
 
+####Who made what changed?
 *Changes by Dylan Lynch and Brent Kirkland*
-- **DONE**: Added special subject requirements feature
-- **DONE**: Added specify department feature
-- **DONE**: Reuse
-- **DONE**: Better user documentation (Improved README)
-- **DONE**: Added comments/new javadoc comments
-- **DONE**: Shows names in course lists retrieved from webpages
-- **DONE**: Beautification / made it look nicer (Paz Approved)
+- DONE: Added special subject requirements feature
+- DONE: Added specify department feature
+- DONE: Reuse
+- DONE: Better user documentation (Improved README)
+- DONE: Added comments/new javadoc comments
+- DONE: Shows names in course lists retrieved from webpages
 
 
-Recent Changes of LAST GROUP
+#####Recent Changes of LAST GROUP
 -Improved Javadoc
 -Added JUnit Tests
 -Refactored files for Git
