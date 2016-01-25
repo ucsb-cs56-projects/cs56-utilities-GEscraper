@@ -3,17 +3,17 @@
   <!-- build.xml for Mantis ID 0000089, W11, CS56
        name: Emilie Menard Barnard -->
 
-  <!-- Significant change/reformat build.xml for Github, S13, CS56 
-       name: Brian Wan -->
+  <!-- Significant change/reformat build.xml for Github, W15, CS56 
+       name: Brent Kirkland, Dylan Lynch -->
 
 <property environment="env"/> <!-- load the environment variables -->
 <property name="webRoot" value="${env.HOME}/public_html/"/>
 <property name="webBaseUrl" value="http://www.cs.ucsb.edu/~${env.USER}"/>
 
 <property name="course" value="cs56"/>
-<property name="quarter" value="S13"/>
+<property name="quarter" value="W15"/>
 <property name="projectName" value="GEscraper"/>
-<property name="mainClass" value="edu.ucsb.cs56.S13.GEscraper.GEscraper"/>
+<property name="mainClass" value="edu.ucsb.cs56.W15.GEscraper.GEscraper"/>
 <property name="projectPath" value="${course}/${quarter}/${projectName}"/>
 
 <property name="javadocDest" value="${webRoot}/${projectName}/javadoc"/>
@@ -22,6 +22,7 @@
 <path id="project.class.path">
   <pathelement location="build"/>
   <pathelement location="lib/junit-4.8.2.jar"/>
+
 </path>
 
 <!-- Compile src code -->
