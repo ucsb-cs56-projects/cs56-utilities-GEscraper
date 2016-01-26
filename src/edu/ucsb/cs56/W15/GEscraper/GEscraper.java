@@ -15,7 +15,7 @@ public class GEscraper {
 	
 
 public static final String urlPrefix = 
-	"http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/";
+	"https://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/";
 public static final String urlSuffix = ".aspx";
 
 
