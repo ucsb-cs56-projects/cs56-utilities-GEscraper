@@ -1,5 +1,6 @@
 package edu.ucsb.cs56.W15.GEscraper;
 
+import javax.swing.*;
 import java.net.*;
 import java.io.*;
 import java.util.*;
@@ -199,34 +200,37 @@ public static final String urlSuffix = ".aspx";
 				}
 			}
 			in.close();
-
+			
 		} catch(MalformedURLException e) {
-			System.out.println("Seems like the subject URL has moved");
+		    System.out.println("Seems like the subject URL has moved");
 			System.exit(1);
-
+			
 		} catch(IOException e){
-			System.out.println("Check yo internet yo!");
-		
+		    System.out.println("Check yo internet yo!");
+			
 		}
 		return outer;
-
+		
 	}
-
-	//main	
-	public static void main(String args[]){
-		boolean loop = true;
+    
+    //main	
+    public static void main(String args[]){
+	    boolean loop = true;
 		ArrayList<String> list = new ArrayList<String>();
 		String area, department;
-
+		
 		while (loop == true) {
-			Scanner areaScanner = new Scanner(System.in);
-	        Scanner departmentScanner = new Scanner(System.in);
-
+		    Scanner areaScanner = new Scanner(System.in);
+			Scanner departmentScanner = new Scanner(System.in);
+		
 	    	System.out.println("Enter a Subject Area (B-H or WRT, EUR, NWC, QNT, ETH) or enter HELP for a list of all areas and courses");
-	    	area = areaScanner.next();
-
+	    	//area = areaScanner.next();
+		String[] choices={"B", "C", "D", "E", "F", "G", "H", "WRT", "EUR", "QNT", "NWC", "ETH"};
+		area = (String) JOptionPane.showInputDialog(null, "Enter a Subject Area:", "Menu", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
+		System.out.println(area);
+		
 	    	if (area.equals("HELP")) {
-	    		System.out.println("General/Special Subject Area Inputs:");
+		    System.out.println("General/Special Subject Area Inputs:");
 	    		System.out.println("Input = Course List Result");
 	    		System.out.println("Area B Courses = B");
 	    		System.out.println("Area C Courses = C");
@@ -240,37 +244,56 @@ public static final String urlSuffix = ".aspx";
 	    		System.out.println("World Cultures Courses = NWC");
 	    		System.out.println("Quantitative Courses = QNT");
 	    		System.out.println("Ethnicity Courses = ETH");
-
+			
 			ArrayList<ArrayList<String>> departments = getDepartments();
                         ArrayList<String> departmentt;
                         for (int i = 0; i < departments.size(); i++) {
-                                departmentt = departments.get(i);
+			    departmentt = departments.get(i);
                                 System.out.println(departmentt.get(0) + " = " + departmentt.get(1));
-                            }
+			}
+			
+			//System.out.println("Enter a Subject Area: ");
+	    
+			
+	    
+			//area = areaScanner.next();
+		}
+		
+           	//System.out.println("Enter a specific department abbrevation or N (No): ");
 
-            System.out.println("Enter a Subject Area: ");
-            area = areaScanner.next();
-             }
 
-           	System.out.println("Enter a specific department abbrevation or N (No): ");
-           	department = departmentScanner.next();
-
-
+		
+		department = (String) JOptionPane.showInputDialog("Enter a specific department abbrevation or N (No): ");
+		
+		//department = departmentScanner.next();
+		
+		
            	if (department.equals("N")) {
-           		list = getCourses(area);
+		    list = getCourses(area);
            	}
            	else { 
-           		list = getSpecificCourses(area, department);
-
-           	}
-
-       		for(int i=0; i<list.size(); i++){ System.out.println(list.get(i)); }
+		    list = getSpecificCourses(area, department);
 			
-			System.out.println("Scrape? Y/N");
+           	}
+		
+       		for(int i=0; i<list.size(); i++){ System.out.println(list.get(i)); }
+		JFrame f = new JFrame("RESULTS");
+		f.setSize(400, 800);
+	       
+		String[] data = list.toArray(new String[list.size()]);
+		f.add(new JScrollPane(new JList(data)));
+		
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setLocationRelativeTo(null);
+		f.setVisible(true);
+		    
+		System.out.println("Scrape? Y/N");
 	    	area = areaScanner.next();
-	   	    if (area.equals("N")) { loop = false; }
+		if (area.equals("N")) { loop = false; }
+
 		}	    
-	   
+		
+		
 	    
 
 	}//end main
