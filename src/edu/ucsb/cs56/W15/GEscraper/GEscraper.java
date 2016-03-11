@@ -2,7 +2,7 @@ package edu.ucsb.cs56.W15.GEscraper;
 
 import org.jsoup.*;
 import org.jsoup.nodes.*;
-import org.jsoup.select.*; 
+import org.jsoup.select.*;
 import javax.swing.*;
 import java.net.*;
 import java.io.*;
@@ -92,24 +92,13 @@ public static final String urlSuffix = ".aspx";
 
 		//create an ArrayList to store courses
 		ArrayList<String> courses = new ArrayList<String>();
-
-		//empty string to capture each line 
-		String contents = "";
-	
-		//try to connect to URL
-        	try{
-
-            	URL htmlcode = new URL(url);
-            	URLConnection hc = htmlcode.openConnection();
-           	 	BufferedReader in = new BufferedReader(new InputStreamReader(hc.getInputStream()));
-           	 	
-				String read;
-
-				while ((read = in.readLine()) != null)
-               		contents=contents+read;
-            		in.close();
-
-        	}
+		
+		//JSOUP Version
+		Document doc=Jsoup.parse("");
+		try{
+		    doc = Jsoup.connect(url).get();
+		    
+		}
 		//Catch bad URL
         	catch (MalformedURLException e) {
             		System.out.println("Area does not exist.");
@@ -120,43 +109,16 @@ public static final String urlSuffix = ".aspx";
             		System.out.println("Check Internet.");
             		System.exit(1);
         	}
-	
-		//create an array of string that are seperated by the html p tag
-       	String[] splitContents = 
-		contents.split("<p style=\"text-indent: -10px; margin-top: 0px; margin-bottom: 0px; padding: 0px; margin-left: 23px;\">");           
-	
-		//String variable to capture specific data
-		String thisPart;
-	
-		//start for loop at x = 1 to skip the html we don't care about	
-		for (int x=1; x<(splitContents.length); x++) { 
-			
-	
-			//get string
-			thisPart=splitContents[x];
-	
-			//replace unneeded data
-			thisPart=thisPart.replaceAll("- <i>", "break");
 
-			//ensure room for course title
-			//the space before </i> cut down the length before the </i>
-			thisPart= thisPart.replaceAll("                                                                                                                                           </i>","break");
+		Elements p=doc.getElementsByTag("p");
+		String tmp="";
+		for(Element e : p){
 
-			//create a new array of String split by the "break"
-			String[] splitThisPart=thisPart.split("break");
-
-			//String courseTitle;
-			//for (int j = 2; j < splitThisPart.length; j++){
-			//	if (splitThisPart[j] != null)
-			//} 
-
-			//System.out.println(thisPart);
-			//the first part of array is the coureName
-			String courseName=(splitThisPart[0] + splitThisPart[1]);
-
-			courses.add(courseName);
+		    tmp=e.html().replaceAll("<i>", "");
+		    tmp=tmp.replaceAll("</i>", "");
+		    courses.add(tmp);
 		}
-
+		
 		return courses;
 
 	}
@@ -209,20 +171,14 @@ public static final String urlSuffix = ".aspx";
 	ArrayList<String> list = new ArrayList<String>();
 	String area, department;
 
-	//JSOUP INITIAL TEST
-	try{
-	    Document doc = Jsoup.connect("https://www.google.com").get();
-	    System.out.println(doc);
-	}catch(IOException e){
-	    System.out.println(e.toString());
-	}
+	
 
 	
 	while (loop == true) {
 	    Scanner areaScanner = new Scanner(System.in);
 	    Scanner departmentScanner = new Scanner(System.in);
 	    
-	    System.out.println("Enter a Subject Area (B-H or WRT, EUR, NWC, QNT, ETH) or enter HELP for a list of all areas and courses");
+	    //System.out.println("Enter a Subject Area (B-H or WRT, EUR, NWC, QNT, ETH) or enter HELP for a list of all areas and courses");
 	    //area = areaScanner.next();
 	    String[] choices={"B", "C", "D", "E", "F", "G", "H", "WRT", "EUR", "QNT", "NWC", "ETH"};
 	    area = (String) JOptionPane.showInputDialog(null, "Enter a Subject Area:", "Menu", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
@@ -275,7 +231,7 @@ public static final String urlSuffix = ".aspx";
 		
 	    }
 	    
-	    for(int i=0; i<list.size(); i++){ System.out.println(list.get(i)); }
+	    //for(int i=0; i<list.size(); i++){ System.out.println(list.get(i)); }
 	    JFrame f = new JFrame("RESULTS");
 	    f.setSize(400, 800);
 	    
