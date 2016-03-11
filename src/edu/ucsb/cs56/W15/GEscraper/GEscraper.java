@@ -2,6 +2,7 @@ package edu.ucsb.cs56.W15.GEscraper;
 
 import org.jsoup.*;
 import org.jsoup.nodes.*;
+import org.jsoup.select.*; 
 import javax.swing.*;
 import java.net.*;
 import java.io.*;
@@ -173,36 +174,23 @@ public static final String urlSuffix = ".aspx";
 
 		//empty string to capture each line
 		String contents = "";
-
+		
 		try {
-			URL htmlcode = new URL(url);
-			URLConnection hc = htmlcode.openConnection();
-			BufferedReader in = new BufferedReader(new InputStreamReader(hc.getInputStream()));
-			String read;
-			boolean rd = false;
-			while((read = in.readLine()) != null){
-				if (read.contains("</div>")){ rd = false; }
-				if (rd){
-					ArrayList<String> inner = new ArrayList<String>();		
-					read = read.substring(0, read.length()-4);
-					String[] splitThisPart = read.split(" - ");
-					inner.add(splitThisPart[0]);
-					inner.add(splitThisPart[1]);
-					outer.add(inner);
-				}
-				if (read.contains("    <p>Anthropology - ANTH<br>")) { 
-					rd = true;
-					ArrayList<String> inner = new ArrayList<String>();
-                                	read = read.substring(7, read.length()-4);
-                                	String[] splitThisPart = read.split(" - ");
-                                	inner.add(splitThisPart[0]);
-                                	inner.add(splitThisPart[1]);
-                                	outer.add(inner);
-		 
-				}
-			}
-			in.close();
-			
+		    Document doc = Jsoup.connect(url).get(); 
+		    Elements departments = doc.getElementsByTag("p"); 
+		    Element body = departments.first();
+		    contents = body.html();  
+		    String dp[] = contents.split("<br>"); 
+		    //now we have an array of "Anthropology - ANTH" 
+		    //go through each string and split them again
+		    for(int i = 0; i < dp.length; i++){
+			ArrayList<String> inner = new ArrayList<String>(); 
+			String[] splitThisPart = dp[i].split(" - "); 
+			inner.add(splitThisPart[0]);
+			inner.add(splitThisPart[1]); 
+			outer.add(inner); 
+		    }
+		                         
 		} catch(MalformedURLException e) {
 		    System.out.println("Seems like the subject URL has moved");
 			System.exit(1);
