@@ -1,5 +1,9 @@
 package edu.ucsb.cs56.W15.GEscraper;
 
+import org.jsoup.*;
+import org.jsoup.nodes.*;
+import org.jsoup.select.*;
+import javax.swing.*;
 import java.net.*;
 import java.io.*;
 import java.util.*;
@@ -88,24 +92,13 @@ public static final String urlSuffix = ".aspx";
 
 		//create an ArrayList to store courses
 		ArrayList<String> courses = new ArrayList<String>();
-
-		//empty string to capture each line 
-		String contents = "";
-	
-		//try to connect to URL
-        	try{
-
-            	URL htmlcode = new URL(url);
-            	URLConnection hc = htmlcode.openConnection();
-           	 	BufferedReader in = new BufferedReader(new InputStreamReader(hc.getInputStream()));
-           	 	
-				String read;
-
-				while ((read = in.readLine()) != null)
-               		contents=contents+read;
-            		in.close();
-
-        	}
+		
+		//JSOUP Version
+		Document doc=Jsoup.parse("");
+		try{
+		    doc = Jsoup.connect(url).get();
+		    
+		}
 		//Catch bad URL
         	catch (MalformedURLException e) {
             		System.out.println("Area does not exist.");
@@ -116,43 +109,16 @@ public static final String urlSuffix = ".aspx";
             		System.out.println("Check Internet.");
             		System.exit(1);
         	}
-	
-		//create an array of string that are seperated by the html p tag
-       	String[] splitContents = 
-		contents.split("<p style=\"text-indent: -10px; margin-top: 0px; margin-bottom: 0px; padding: 0px; margin-left: 23px;\">");           
-	
-		//String variable to capture specific data
-		String thisPart;
-	
-		//start for loop at x = 1 to skip the html we don't care about	
-		for (int x=1; x<(splitContents.length); x++) { 
-			
-	
-			//get string
-			thisPart=splitContents[x];
-	
-			//replace unneeded data
-			thisPart=thisPart.replaceAll("- <i>", "break");
 
-			//ensure room for course title
-			//the space before </i> cut down the length before the </i>
-			thisPart= thisPart.replaceAll("                                                                                                                                           </i>","break");
+		Elements p=doc.getElementsByTag("p");
+		String tmp="";
+		for(Element e : p){
 
-			//create a new array of String split by the "break"
-			String[] splitThisPart=thisPart.split("break");
-
-			//String courseTitle;
-			//for (int j = 2; j < splitThisPart.length; j++){
-			//	if (splitThisPart[j] != null)
-			//} 
-
-			//System.out.println(thisPart);
-			//the first part of array is the coureName
-			String courseName=(splitThisPart[0] + splitThisPart[1]);
-
-			courses.add(courseName);
+		    tmp=e.html().replaceAll("<i>", "");
+		    tmp=tmp.replaceAll("</i>", "");
+		    courses.add(tmp);
 		}
-
+		
 		return courses;
 
 	}
@@ -170,109 +136,121 @@ public static final String urlSuffix = ".aspx";
 
 		//empty string to capture each line
 		String contents = "";
-
-		try {
-			URL htmlcode = new URL(url);
-			URLConnection hc = htmlcode.openConnection();
-			BufferedReader in = new BufferedReader(new InputStreamReader(hc.getInputStream()));
-			String read;
-			boolean rd = false;
-			while((read = in.readLine()) != null){
-				if (read.contains("</div>")){ rd = false; }
-				if (rd){
-					ArrayList<String> inner = new ArrayList<String>();		
-					read = read.substring(0, read.length()-4);
-					String[] splitThisPart = read.split(" - ");
-					inner.add(splitThisPart[0]);
-					inner.add(splitThisPart[1]);
-					outer.add(inner);
-				}
-				if (read.contains("    <p>Anthropology - ANTH<br>")) { 
-					rd = true;
-					ArrayList<String> inner = new ArrayList<String>();
-                                	read = read.substring(7, read.length()-4);
-                                	String[] splitThisPart = read.split(" - ");
-                                	inner.add(splitThisPart[0]);
-                                	inner.add(splitThisPart[1]);
-                                	outer.add(inner);
-		 
-				}
-			}
-			in.close();
-
-		} catch(MalformedURLException e) {
-			System.out.println("Seems like the subject URL has moved");
-			System.exit(1);
-
-		} catch(IOException e){
-			System.out.println("Check yo internet yo!");
 		
+		try {
+		    Document doc = Jsoup.connect(url).get(); 
+		    Elements departments = doc.getElementsByTag("p"); 
+		    Element body = departments.first();
+		    contents = body.html();  
+		    String dp[] = contents.split("<br>"); 
+		    //now we have an array of "Anthropology - ANTH" 
+		    //go through each string and split them again
+		    for(int i = 0; i < dp.length; i++){
+			ArrayList<String> inner = new ArrayList<String>(); 
+			String[] splitThisPart = dp[i].split(" - "); 
+			inner.add(splitThisPart[0]);
+			inner.add(splitThisPart[1]); 
+			outer.add(inner); 
+		    }
+		                         
+		} catch(MalformedURLException e) {
+		    System.out.println("Seems like the subject URL has moved");
+			System.exit(1);
+			
+		} catch(IOException e){
+		    System.out.println("Check yo internet yo!");
+			
 		}
 		return outer;
-
+		
 	}
+    
+    //main	
+    public static void main(String args[]){
+	boolean loop = true;
+	ArrayList<String> list = new ArrayList<String>();
+	String area, department;
 
-	//main	
-	public static void main(String args[]){
-		boolean loop = true;
-		ArrayList<String> list = new ArrayList<String>();
-		String area, department;
+	
 
-		while (loop == true) {
-			Scanner areaScanner = new Scanner(System.in);
-	        Scanner departmentScanner = new Scanner(System.in);
-
-	    	System.out.println("Enter a Subject Area (B-H or WRT, EUR, NWC, QNT, ETH) or enter HELP for a list of all areas and courses");
-	    	area = areaScanner.next();
-
-	    	if (area.equals("HELP")) {
-	    		System.out.println("General/Special Subject Area Inputs:");
-	    		System.out.println("Input = Course List Result");
-	    		System.out.println("Area B Courses = B");
-	    		System.out.println("Area C Courses = C");
-	    		System.out.println("Area D Courses = D");
-	    		System.out.println("Area E Courses = E");
-	    		System.out.println("Area F Courses = F");
-	    		System.out.println("Area G Courses = G");
-	    		System.out.println("Area H Courses = H");
-	    		System.out.println("Writing Courses = WRT");
-	    		System.out.println("European Courses = EUR");
-	    		System.out.println("World Cultures Courses = NWC");
-	    		System.out.println("Quantitative Courses = QNT");
-	    		System.out.println("Ethnicity Courses = ETH");
-
-			ArrayList<ArrayList<String>> departments = getDepartments();
-                        ArrayList<String> departmentt;
-                        for (int i = 0; i < departments.size(); i++) {
-                                departmentt = departments.get(i);
-                                System.out.println(departmentt.get(0) + " = " + departmentt.get(1));
-                            }
-
-            System.out.println("Enter a Subject Area: ");
-            area = areaScanner.next();
-             }
-
-           	System.out.println("Enter a specific department abbrevation or N (No): ");
-           	department = departmentScanner.next();
-
-
-           	if (department.equals("N")) {
-           		list = getCourses(area);
-           	}
-           	else { 
-           		list = getSpecificCourses(area, department);
-
-           	}
-
-       		for(int i=0; i<list.size(); i++){ System.out.println(list.get(i)); }
-			
-			System.out.println("Scrape? Y/N");
-	    	area = areaScanner.next();
-	   	    if (area.equals("N")) { loop = false; }
-		}	    
-	   
+	
+	while (loop == true) {
+	    Scanner areaScanner = new Scanner(System.in);
+	    Scanner departmentScanner = new Scanner(System.in);
 	    
-
-	}//end main
-
+	    //System.out.println("Enter a Subject Area (B-H or WRT, EUR, NWC, QNT, ETH) or enter HELP for a list of all areas and courses");
+	    //area = areaScanner.next();
+	    String[] choices={"B", "C", "D", "E", "F", "G", "H", "WRT", "EUR", "QNT", "NWC", "ETH"};
+	    area = (String) JOptionPane.showInputDialog(null, "Enter a Subject Area:", "Menu", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
+	    System.out.println(area);
+	    
+	    if (area.equals("HELP")) {
+		System.out.println("General/Special Subject Area Inputs:");
+		System.out.println("Input = Course List Result");
+		System.out.println("Area B Courses = B");
+		System.out.println("Area C Courses = C");
+		System.out.println("Area D Courses = D");
+		System.out.println("Area E Courses = E");
+		System.out.println("Area F Courses = F");
+		System.out.println("Area G Courses = G");
+		System.out.println("Area H Courses = H");
+		System.out.println("Writing Courses = WRT");
+		System.out.println("European Courses = EUR");
+		System.out.println("World Cultures Courses = NWC");
+		System.out.println("Quantitative Courses = QNT");
+		System.out.println("Ethnicity Courses = ETH");
+		
+		ArrayList<ArrayList<String>> departments = getDepartments();
+		ArrayList<String> departmentt;
+		for (int i = 0; i < departments.size(); i++) {
+		    departmentt = departments.get(i);
+		    System.out.println(departmentt.get(0) + " = " + departmentt.get(1));
+		}
+		
+		//System.out.println("Enter a Subject Area: ");
+		
+		
+		
+		//area = areaScanner.next();
+	    }
+	    
+	    //System.out.println("Enter a specific department abbrevation or N (No): ");
+	    
+	    
+	    
+	    department = (String) JOptionPane.showInputDialog("Enter a specific department abbrevation or N (No): ");
+	    
+	    //department = departmentScanner.next();
+	    
+	    
+	    if (department.equals("N")) {
+		list = getCourses(area);
+	    }
+	    else { 
+		list = getSpecificCourses(area, department);
+		
+	    }
+	    
+	    //for(int i=0; i<list.size(); i++){ System.out.println(list.get(i)); }
+	    JFrame f = new JFrame("RESULTS");
+	    f.setSize(400, 800);
+	    
+	    String[] data = list.toArray(new String[list.size()]);
+	    f.add(new JScrollPane(new JList(data)));
+	    
+	    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    f.setLocationRelativeTo(null);
+	    f.setVisible(true);
+	    
+	    System.out.println("Scrape? Y/N");
+	    area = areaScanner.next();
+	    if (area.equals("N")) { loop = false; }
+	    
+	}	    
+	
+	
+	
+	
+    }//end main
+    
 }//end GEscraper

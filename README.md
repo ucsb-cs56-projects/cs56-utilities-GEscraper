@@ -27,7 +27,7 @@ The current website of UCSB that is being scraped is: http://my.sa.ucsb.edu/cata
 - **DONE**: [Allow reuse](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/4) - *50 pts*
 - **DONE**: [Beautification - updated comments,  future refractoring, and readme (beautiful, right?)](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/14) - *25 pts*
 
-*Recent Changes of LAST GROUP*
+*Recent Changes of LAST LAST GROUP (W15)*
 
 - Improved Javadoc
 - Added JUnit Tests
@@ -35,3 +35,12 @@ The current website of UCSB that is being scraped is: http://my.sa.ucsb.edu/cata
 - Fixed missing class case
 - Added User interaction to input an Area (eg "B", "C")
 
+*Recent Changes of LAST GROUP (W16)*
+
+- Added a basic GUI
+- Converted the code to use Jsoup (which in turn beautified the code and made it simpler)
+
+*Notes from W16*
+
+- Any changes to the codebase from this point forward will probably not involve the existing code, because there isn't much left to do with it
+- Code changes will likely be new features or expanding the scraper to do other things
