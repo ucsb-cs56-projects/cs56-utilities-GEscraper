@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.W15.GEscraper;
+package edu.ucsb.cs56.F16.CourseScraper;
 
 import org.jsoup.*;
 import org.jsoup.nodes.*;
@@ -33,31 +33,31 @@ public class GetEngInfo {
 	/** Get all departments for ease searching
 	  @return Arraylist of ArrayList holding the course acronym and course name 
 	*/
-	public static ArrayList<String> getDepartments(){
+	// public static ArrayList<String> getDepartments(){
 
-		String url = "https://my.sa.ucsb.edu/catalog/Current/CollegesDepartments/coe/AcademicDepartments.aspx";
+	// 	String url = "https://my.sa.ucsb.edu/catalog/Current/CollegesDepartments/coe/AcademicDepartments.aspx";
 	
 
-		ArrayList<String> outer = new ArrayList<String>();
+	// 	ArrayList<String> outer = new ArrayList<String>();
 		
-		try {
-		    Document doc = Jsoup.connect(url).get(); 
-		    Element departments = doc.getElementById("ctl00_ctl00_iisChildren_itemsInSectionContainer"); 
-		    Elements dept_list = departments.getElementsByTag("a");
-		    for(Element e : dept_list){
-		    	outer.add(e.html());
-		    }
+	// 	try {
+	// 	    Document doc = Jsoup.connect(url).get(); 
+	// 	    Element departments = doc.getElementById("ctl00_ctl00_iisChildren_itemsInSectionContainer"); 
+	// 	    Elements dept_list = departments.getElementsByTag("a");
+	// 	    for(Element e : dept_list){
+	// 	    	outer.add(e.html());
+	// 	    }
 		                         
-		} catch(MalformedURLException e) {
-		    System.out.println("Seems like the subject URL has moved");
-			System.exit(1);
+	// 	} catch(MalformedURLException e) {
+	// 	    System.out.println("Seems like the subject URL has moved");
+	// 		System.exit(1);
 			
-		} catch(IOException e){
-		    System.out.println("Check yo internet yo!");
+	// 	} catch(IOException e){
+	// 	    System.out.println("Check yo internet yo!");
 			
-		}
-		return outer;
-	}
+	// 	}
+	// 	return outer;
+	// }
 
 	/** get course numbers of gen/special subject courses in a given area
 	  @param area as B->H or Special Subject Abbreviation: "WRT", "EUR", "NWC", "QNT", "ETH"

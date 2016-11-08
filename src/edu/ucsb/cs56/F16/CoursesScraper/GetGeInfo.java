@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.W15.GEscraper;
+package edu.ucsb.cs56.F16.CourseScraper;
 
 import org.jsoup.*;
 import org.jsoup.nodes.*;
@@ -15,7 +15,7 @@ import java.util.Scanner;
     @version 03.04.15
 */
 
-public class GetInfo {
+public class GetGeInfo {
 	
 
 	public static final String urlPrefix = 
@@ -57,7 +57,7 @@ public class GetInfo {
 		@return ArrayList of all courses from specific area and department
 	*/
 	public static ArrayList<String> getSpecificCourses(String area, String department) {
-		ArrayList<String> areaCourses = GetInfo.getCourses(area);
+		ArrayList<String> areaCourses = GetGeInfo.getCourses(area);
 		ArrayList<String> subjectCourses = new ArrayList<String>();
 
 		for (int i = 0; i <= areaCourses.size() - 1; i++) {
@@ -159,4 +159,4 @@ public class GetInfo {
 	}
     
 	
-}//end GetInfo
+}//end GetGeInfo

@@ -6,14 +6,17 @@
   <!-- Significant change/reformat build.xml for Github, W15, CS56 
        name: Brent Kirkland, Dylan Lynch -->
 
+  <!-- Change build.xml for Github, F16, CS56 
+       name: Jeremy You, Xingyuan Lin -->
+
 <property environment="env"/> <!-- load the environment variables -->
 <property name="webRoot" value="${env.HOME}/public_html/"/>
 <property name="webBaseUrl" value="http://www.cs.ucsb.edu/~${env.USER}"/>
 
 <property name="course" value="cs56"/>
-<property name="quarter" value="W15"/>
-<property name="projectName" value="GEscraper"/>
-<property name="mainClass" value="edu.ucsb.cs56.W15.GEscraper.GEscraper"/>
+<property name="quarter" value="F16"/>
+<property name="projectName" value="CourseScraper"/>
+<property name="mainClass" value="edu.ucsb.cs56.F16.CourseScraper.CourseScraper"/>
 <property name="projectPath" value="${course}/${quarter}/${projectName}"/>
 
 <property name="javadocDest" value="${webRoot}/${projectName}/javadoc"/>
@@ -35,7 +38,7 @@
 </target>
 
 <!-- Run the scraper -->
-<target name="run" depends="compile, jar" description="run the GEscraper"> 
+<target name="run" depends="compile, jar" description="run the CourseScraper"> 
   <java fork="true" classname="${mainClass}">
     <classpath refid="project.class.path"/>
   </java>
