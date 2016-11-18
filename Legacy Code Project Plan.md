@@ -23,6 +23,6 @@ Estimate: 200pts
 
 Estimate: 400pts (In view of the difficulty of this issue, we hope it can be 500pts)
 
-- Identify the URL of the course description we nedd
+- Identify the URL of the course description we need
 - Add new class of scraper to scrape the course description
 - Design the GUI
