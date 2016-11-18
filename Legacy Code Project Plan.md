@@ -22,3 +22,7 @@ Estimate: 200pts
 [Issue #26](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/26):Give course description
 
 Estimate: 400pts (In view of the difficulty of this issue, we hope it can be 500pts)
+
+- Identify the URL of the course description we nedd
+- Add new class of scraper to scrape the course description
+- Design the GUI
