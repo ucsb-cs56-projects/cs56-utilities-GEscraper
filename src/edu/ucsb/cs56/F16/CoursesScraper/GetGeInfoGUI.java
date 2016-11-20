@@ -36,9 +36,8 @@ public class GetGeInfoGUI extends JFrame implements ActionListener {
         if (e.getActionCommand().equals("Get description")) {
             
             String s = (String) list.getSelectedValue();
-
             System.out.println("Value Selected: " + s);
-            text.setText(s);
+            text.setText(GetDescription.getCourseDescription(s));
         }
     }
 
