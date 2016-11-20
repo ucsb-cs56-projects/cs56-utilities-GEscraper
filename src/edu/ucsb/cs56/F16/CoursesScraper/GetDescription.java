@@ -51,8 +51,6 @@ public class GetDescription {
 		String[] words2 = words[0].split(" [0-9]+");
 		String area = words2[0];
 		String courseId = words[0] + ".";
-		System.out.println(area);
-		System.out.println(courseId);
 		AreaUrlMappingTable table = new AreaUrlMappingTable();
 		String url = table.getUrl_Eng(area);
 		Document doc=Jsoup.parse("");

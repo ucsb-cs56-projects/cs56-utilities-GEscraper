@@ -30,7 +30,7 @@ public class CourseScraper {
 		    Object[] options = {"Engineering",
                     "General Subject"};
 			int engrOrGe = JOptionPane.showOptionDialog(null,
-			    "choose to display courses from engineering or general subject",
+			    "Choose to display courses from engineering or general subject",
 			    "Menu",
 			    JOptionPane.YES_NO_OPTION,
 			    JOptionPane.QUESTION_MESSAGE,
