@@ -32,12 +32,12 @@ public class GetDescription {
 		//Catch bad URL
 		catch (MalformedURLException e) {
 			System.out.println("Area does not exist.");
-			System.exit(1);
+			// System.exit(1);
 		}
 		//catch IOException
 		catch (IOException e) {
 			System.out.println("Check Internet.");
-			System.exit(1);
+			// System.exit(1);
 		}
 		Elements content = doc.getElementsContainingText(courseId);
 		Element panel = content.get(content.size() - 2);
