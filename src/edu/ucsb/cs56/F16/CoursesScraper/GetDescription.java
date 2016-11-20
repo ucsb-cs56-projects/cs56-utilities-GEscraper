@@ -26,15 +26,24 @@ public class GetDescription {
 		//Catch bad URL
 		catch (MalformedURLException e) {
 			System.out.println("Area does not exist.");
+			return "Course description not found";
 		}
 		//catch IOException
 		catch (IOException e) {
 			System.out.println("Check Internet.");
+			return "Course description not found";
 		}
 		Elements content = doc.getElementsContainingText(courseId);
-		Element panel = content.get(content.size() - 2);
-		Elements des = panel.select("div[style=padding-left: 2px;]");
-		return des.get(1).html();
+		if(content.size() == 0)
+			return "Course description not found";
+		else{
+			Element panel = content.get(content.size() - 2);
+			Elements des = panel.select("div[style=padding-left: 2px;]");
+			if(des.size() == 0)
+				return "Course description not found";
+			else
+				return des.get(1).html();			
+		}
 	}
 
 }

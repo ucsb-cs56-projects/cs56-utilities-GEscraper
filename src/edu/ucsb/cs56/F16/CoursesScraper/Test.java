@@ -96,12 +96,39 @@ public class Test {
 
 		// String s = (String)table.get("a");
 		// System.out.println(s);
-		String course = "GER S 95B - Intermediate Yiddish";
+		String course = "SLAV 6GS - Intermediate French for Global Studies and Political Science";
+		// String[] words = course.split(" - ");
+		// String[] words2 = words[0].split(" [0-9]+");
+		// String area = words2[0];
+		// String courseId = words[0] + ".";
+
+		// System.out.println(area + ".");
+		// System.out.println(courseId);
+
+
 		String[] words = course.split(" - ");
 		String[] words2 = words[0].split(" [0-9]+");
 		String area = words2[0];
 		String courseId = words[0] + ".";
-
+		AreaUrlMappingTable table = new AreaUrlMappingTable();
+		String url = table.getUrl(area);
+		Document doc=Jsoup.parse("");
+		try{
+			doc = Jsoup.connect(url).get();
+		}
+		//Catch bad URL
+		catch (MalformedURLException e) {
+			System.out.println("Area does not exist.");
+		}
+		//catch IOException
+		catch (IOException e) {
+			System.out.println("Check Internet.");
+		}
+		Elements content = doc.getElementsContainingText(courseId);
+		System.out.println(content.size());
+		// Element panel = content.get(content.size() - 2);
+		// Elements des = panel.select("div[style=padding-left: 2px;]");
+		// System.out.println(des.get(1).html());
 	}//end main
     
 }
