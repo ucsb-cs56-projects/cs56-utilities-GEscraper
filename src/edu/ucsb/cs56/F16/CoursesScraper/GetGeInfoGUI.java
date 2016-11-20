@@ -37,7 +37,7 @@ public class GetGeInfoGUI extends JFrame implements ActionListener {
             
             String s = (String) list.getSelectedValue();
             System.out.println("Value Selected: " + s);
-            text.setText(GetDescription.getCourseDescription(s));
+            text.setText(GetDescription.getGECourseDescription(s));
         }
     }
 
