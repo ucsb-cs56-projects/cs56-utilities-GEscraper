@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class GetGeInfoGUI extends JFrame implements ActionListener {
+public class GetEngInfoGUI extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
@@ -14,7 +14,7 @@ public class GetGeInfoGUI extends JFrame implements ActionListener {
     private JButton button;
     private JTextArea text;
 
-    public GetGeInfoGUI(String[] data) {
+    public GetEngInfoGUI(String[] data) {
         this.setTitle("Result");
         // set flow layout for the frame
         this.getContentPane().setLayout(new FlowLayout());

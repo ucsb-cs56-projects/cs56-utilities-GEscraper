@@ -52,16 +52,14 @@ public class CourseScraper {
 					case "Technology Management Program": dept = "tmp";break;
 				}
 				ArrayList<String> courses = GetEngInfo.getCourses(dept);
-				JFrame f = new JFrame("RESULTS");
-			    f.setSize(400, 800);
-			    
-			    String[] data = courses.toArray(new String[courses.size()]);
-			    f.add(new JScrollPane(new JList(data)));
-			    
-			    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			    f.setLocationRelativeTo(null);
-			    f.setVisible(true);
-			    
+				
+				String[] data = courses.toArray(new String[courses.size()]);
+			    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            		public void run() {
+                		GetGeInfoGUI.createAndShowGUI(data);
+            		}
+        		});
+        		
 			    System.out.println("Scrape? Y/N");
 			    area = areaScanner.next();
 			    if (area.equals("N")) { loop = false; }
