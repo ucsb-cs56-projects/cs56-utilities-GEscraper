@@ -56,7 +56,7 @@ public class CourseScraper {
 				String[] data = courses.toArray(new String[courses.size()]);
 			    javax.swing.SwingUtilities.invokeLater(new Runnable() {
             		public void run() {
-                		GetGeInfoGUI.createAndShowGUI(data);
+                		GetEngInfoGUI.createAndShowGUI(data);
             		}
         		});
         		

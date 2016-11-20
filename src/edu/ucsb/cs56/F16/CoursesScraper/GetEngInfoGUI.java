@@ -38,14 +38,14 @@ public class GetEngInfoGUI extends JFrame implements ActionListener {
             String s = (String) list.getSelectedValue();
 
             System.out.println("Value Selected: " + s);
-            text.setText(s);
+            text.setText(GetDescription.getEngCourseDescription(s));
         }
     }
 
     public static void createAndShowGUI(String[] data) {
 
         //Create and set up the window.
-        JFrame frame = new GetGeInfoGUI(data);
+        JFrame frame = new GetEngInfoGUI(data);
 
         //Display the window.
         frame.pack();
