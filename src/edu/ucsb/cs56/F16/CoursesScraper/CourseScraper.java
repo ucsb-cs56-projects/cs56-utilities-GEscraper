@@ -109,18 +109,16 @@ public class CourseScraper {
 				else { 
 					list = getgeinfo.getSpecificCourses(area, department);
 			    }
-				    
-			    //for(int i=0; i<list.size(); i++){ System.out.println(list.get(i)); }
-			    JFrame f = new JFrame("RESULTS");
-			    f.setSize(400, 800);
 			    
 			    String[] data = list.toArray(new String[list.size()]);
-			    f.add(new JScrollPane(new JList(data)));
-			    
-			    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			    f.setLocationRelativeTo(null);
-			    f.setVisible(true);
-			    
+
+
+               	javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            		public void run() {
+                		GetGeInfoGUI.createAndShowGUI(data);
+            		}
+        		});
+            	
 			    System.out.println("Scrape? Y/N");
 			    area = areaScanner.next();
 			    if (area.equals("N")) { loop = false; }
