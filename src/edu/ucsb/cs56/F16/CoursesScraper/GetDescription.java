@@ -12,17 +12,11 @@ import java.util.Scanner;
 public class GetDescription {
 
 	public static String getCourseDescription(String course) {
-		String[] words = course.split("[\\s\\.]+");
-		String area = words[0];
-		String courseId = area;
-		try{
-			int number = Integer.parseInt(words[1]);
-			courseId = courseId + " " + words[1] + '.';
-		}
-		catch (NumberFormatException e){
-			area = area + " " + words[1];
-			courseId = area + " " + words[2] + '.';
-		}
+
+		String[] words = course.split(" - ");
+		String[] words2 = words[0].split(" [0-9]+");
+		String area = words2[0];
+		String courseId = words[0] + ".";
 		AreaUrlMappingTable table = new AreaUrlMappingTable();
 		String url = table.getUrl(area);
 		Document doc=Jsoup.parse("");
@@ -32,12 +26,10 @@ public class GetDescription {
 		//Catch bad URL
 		catch (MalformedURLException e) {
 			System.out.println("Area does not exist.");
-			// System.exit(1);
 		}
 		//catch IOException
 		catch (IOException e) {
 			System.out.println("Check Internet.");
-			// System.exit(1);
 		}
 		Elements content = doc.getElementsContainingText(courseId);
 		Element panel = content.get(content.size() - 2);
