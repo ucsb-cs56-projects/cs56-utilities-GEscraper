@@ -30,7 +30,7 @@ public class CourseScraper {
 		    Object[] options = {"Engineering",
                     "General Subject"};
 			int engrOrGe = JOptionPane.showOptionDialog(null,
-			    "choose to display courses from engineering or general subject",
+			    "Choose to display courses from engineering or general subject",
 			    "Menu",
 			    JOptionPane.YES_NO_OPTION,
 			    JOptionPane.QUESTION_MESSAGE,
@@ -52,16 +52,14 @@ public class CourseScraper {
 					case "Technology Management Program": dept = "tmp";break;
 				}
 				ArrayList<String> courses = GetEngInfo.getCourses(dept);
-				JFrame f = new JFrame("RESULTS");
-			    f.setSize(400, 800);
-			    
-			    String[] data = courses.toArray(new String[courses.size()]);
-			    f.add(new JScrollPane(new JList(data)));
-			    
-			    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			    f.setLocationRelativeTo(null);
-			    f.setVisible(true);
-			    
+				
+				String[] data = courses.toArray(new String[courses.size()]);
+			    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            		public void run() {
+                		GetEngInfoGUI.createAndShowGUI(data);
+            		}
+        		});
+        		
 			    System.out.println("Scrape? Y/N");
 			    area = areaScanner.next();
 			    if (area.equals("N")) { loop = false; }
@@ -109,18 +107,16 @@ public class CourseScraper {
 				else { 
 					list = getgeinfo.getSpecificCourses(area, department);
 			    }
-				    
-			    //for(int i=0; i<list.size(); i++){ System.out.println(list.get(i)); }
-			    JFrame f = new JFrame("RESULTS");
-			    f.setSize(400, 800);
 			    
 			    String[] data = list.toArray(new String[list.size()]);
-			    f.add(new JScrollPane(new JList(data)));
-			    
-			    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			    f.setLocationRelativeTo(null);
-			    f.setVisible(true);
-			    
+
+
+               	javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            		public void run() {
+                		GetGeInfoGUI.createAndShowGUI(data);
+            		}
+        		});
+            	
 			    System.out.println("Scrape? Y/N");
 			    area = areaScanner.next();
 			    if (area.equals("N")) { loop = false; }

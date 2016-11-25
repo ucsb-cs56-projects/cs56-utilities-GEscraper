@@ -44,12 +44,6 @@
   </java>
 </target>
 
-<target name="runtest" depends="compile, jar" description="run the CourseScraper"> 
-  <java fork="true" classname="edu.ucsb.cs56.F16.CourseScraper.Test">
-    <classpath refid="project.class.path"/>
-  </java>
-</target>
-
 <!-- Clean the directories -->
 <target name="clean" description="delete unnecessary files and directories">
   <delete failonerror="false" verbose="true">
