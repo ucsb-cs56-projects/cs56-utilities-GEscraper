@@ -55,3 +55,9 @@ https://my.sa.ucsb.edu/catalog/Current/CollegesDepartments/coe/compengr.aspx?Dep
 - **DONE**: [Scrape other services(scrape courses offered by a specific department in CoE)](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/21) - *400 pts*
 - **DONE**: [Refactor main class](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/27) - *200 pts*
 - **DONE**: [Give course description](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/26) - *400 pts(500 pts?)*
+
+*Notes from F16*
+
+- There is some reused code. Future groups can further refactor the code by creating more general classes that others inheret from.
+- The GUI uses FlowLayout now, future groups can change the code to make the GUI looks same in different computer.
+- The fisrt GUI window can't be closed now. Future groups can fix this bug.
