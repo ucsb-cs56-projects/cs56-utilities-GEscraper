@@ -51,7 +51,7 @@ https://my.sa.ucsb.edu/catalog/Current/CollegesDepartments/coe/compengr.aspx?Dep
 - Any changes to the codebase from this point forward will probably not involve the existing code, because there isn't much left to do with it
 - Code changes will likely be new features or expanding the scraper to do other things
 
-*Changes by Xinjie You and Xingyuan Lin*
+*Changes by Xinjie You and Xingyuan Lin (F16)*
 - **DONE**: [Scrape other services(scrape courses offered by a specific department in CoE)](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/21) - *400 pts*
 - **DONE**: [Refactor main class](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/27) - *200 pts*
 - **DONE**: [Give course description](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/26) - *400 pts(500 pts?)*
