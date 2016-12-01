@@ -8,13 +8,19 @@ Project Information
 ```
 ####Purpose
 ------------------
-Scrape University of California, Santa Barbara's General Catalog to show General Education Area Course list. 
+1. Scrape and show General Education Area Course list. 
+2. Scrape and show courses offered by a specific department in College of Engineering
 
-The user has the option to either see the entire courselist of an area OR the a specific department within the area.
+The user has the option to choose to display courses from general subject or engineering.
+
+The user can choose to show the course description of each course.
+
 
 ####What's being scraped?
 -------------------------------
-The current website of UCSB that is being scraped is: http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/AreaE.aspx 
+The example websites that are being scraped are:
+http://my.sa.ucsb.edu/catalog/current/UndergraduateEducation/AreaE.aspx  (general education)
+https://my.sa.ucsb.edu/catalog/Current/CollegesDepartments/coe/compengr.aspx?DeptTab=Courses  (engineering)
 
 ####Who made what changed?
 ----------------------------------
@@ -44,3 +50,8 @@ The current website of UCSB that is being scraped is: http://my.sa.ucsb.edu/cata
 
 - Any changes to the codebase from this point forward will probably not involve the existing code, because there isn't much left to do with it
 - Code changes will likely be new features or expanding the scraper to do other things
+
+*Changes by Xinjie You and Xingyuan Lin*
+- **DONE**: [Scrape other services(scrape courses offered by a specific department in CoE)](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/21) - *400 pts*
+- **DONE**: [Refactor main class](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/27) - *200 pts*
+- **DONE**: [Give course description](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/26) - *400 pts(500 pts?)*
