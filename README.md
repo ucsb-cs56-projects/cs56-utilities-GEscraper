@@ -56,8 +56,19 @@ https://my.sa.ucsb.edu/catalog/Current/CollegesDepartments/coe/compengr.aspx?Dep
 - **DONE**: [Refactor main class](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/27) - *200 pts*
 - **DONE**: [Give course description](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/26) - *400 pts(500 pts?)*
 
-*Notes from F16*
 
-- There is some reused code. Future groups can further refactor the code by creating more general classes that others inheret from.
+####*Notes from F16*
+----------------------------------
+**a major mistake we made and a valuable lesson we learned**
+We put a lot of efforts working on [issue#21](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/21), which says "Expand the existing scraper to also scrape other UCSB services. Like the College of Engineering's GEAR book." However, unfortunately, we misunderstood the issue and did all the work to scrape courses that are offered by College of Engineering, no matther whether or not they belong to GE. Because we think it is part of *other UCSB services*.
+
+Actually, we should have noticed this because the name of the project is **GEscraper**!! But we are so focused on the code and development that we ignored this problem.
+
+So, the lesson we learned is that writing code cannot be separated from customers' needs. And the communications and cooperations among different roles in a software team are very important. There should be a good system to pass information about customers' needs down to software development.
+
+**advice for future groups**
+- Since the work we did on [issue#21](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/21) does not belong to the project, it should be removed. However, the code we wrote are not meaningless in respect to code itself. Maybe groups working on project [cs56-scrapers-ucsb-curriculum](https://github.com/UCSB-CS56-Projects/cs56-scrapers-ucsb-curriculum) can refer to the code to make future developments.
+- In order to get course description according to the course title, we have to map the title to correct url. Unluckily, there is no general rule, so we have to create the mapping table by hand. It is done in the file *AreaUrlMappingTable.java*. When reviewing our code, a kind lady brought up a question about whether it is more appropriate to put the mapping table into a configure file, rather than writing it in the code. We think the answer is yes, so that we do not to recompile the code if the mapping table is changed. Maybe you can work on this matter to improve the quality of the code.
+- There is some reused code. Future groups can further refactor the code by creating more general classes that others inherit from.
 - The GUI uses FlowLayout now, future groups can change the code to make the GUI looks same in different computer.
 - The fisrt GUI window can't be closed now. Future groups can fix this bug.
