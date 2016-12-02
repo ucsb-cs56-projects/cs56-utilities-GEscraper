@@ -65,7 +65,7 @@ We put a lot of efforts working on [issue#21](https://github.com/UCSB-CS56-Proje
 
 Actually, we should have noticed this because the name of the project is **GEscraper**!! But we are so focused on the code and development that we ignored this problem.
 
-So, the lesson we learned is that writing code cannot be separated from customers' needs. And the communications and cooperations among different roles in a software team are very important. There should be a good system to pass information about customers' needs down to software development.
+So, the lesson we learned is that we write code to meet customers' needs. There should be a good system to pass information about customers' needs down to software development. The communications and cooperations among different roles in a software team are very important. 
 
 **Advice for future groups**
 - Since the work we did on [issue#21](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/21) does not belong to the project, it should be removed. However, the code we wrote are not meaningless in respect to code itself. Maybe groups working on project [cs56-scrapers-ucsb-curriculum](https://github.com/UCSB-CS56-Projects/cs56-scrapers-ucsb-curriculum) can refer to the code to make future developments.
