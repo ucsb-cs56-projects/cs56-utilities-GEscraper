@@ -61,7 +61,7 @@ https://my.sa.ucsb.edu/catalog/Current/CollegesDepartments/coe/compengr.aspx?Dep
 ----------------------------------
 **A major mistake we made and a valuable lesson we learned**
 
-We put a lot of efforts working on [issue#21](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/21), which says "Expand the existing scraper to also scrape other UCSB services. Like the College of Engineering's GEAR book." However, unfortunately, we misunderstood the issue and did all the work to scrape courses that are offered by College of Engineering, no matther whether or not they belong to GE. Because we think it is part of *other UCSB services*.
+We put a lot of efforts working on [issue#21](https://github.com/UCSB-CS56-Projects/cs56-utilities-GEscraper/issues/21), which says "*Expand the existing scraper to also scrape other UCSB services. Like the College of Engineering's GEAR book.*" However, unfortunately, we misunderstood the issue and did all the work to scrape courses that are offered by College of Engineering, no matther whether or not they belong to GE. Because we think it is part of "*other UCSB services*".
 
 Actually, we should have noticed this because the name of the project is **GEscraper**!! But we are so focused on the code and development that we ignored this problem.
 
