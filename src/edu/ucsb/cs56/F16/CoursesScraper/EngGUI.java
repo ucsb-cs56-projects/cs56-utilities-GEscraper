@@ -3,6 +3,7 @@ package edu.ucsb.cs56.F16.CourseScraper;
 import javax.swing.BoxLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Dimension;
 import java.util.*;
 
 import javax.swing.*;
@@ -45,14 +46,16 @@ public class EngGUI extends JPanel{
     list = new JList();
     courseList = new JScrollPane(list);
 
+    foundPane.add(Box.createRigidArea(new Dimension(30, 0)));
     foundPane.add(courseList);
     foundPane.add(getDescriptionButton);
     foundPane.add(new JScrollPane(text));
+    foundPane.add(Box.createRigidArea(new Dimension(30, 0)));
 
     //Add components to main panel
     add(searchPane);
     add(foundPane);
-    setSize(600,600);
+    setSize(800, 400);
 
     setVisible(true);
   }
@@ -73,11 +76,8 @@ public class EngGUI extends JPanel{
         case "Technology Management Program": dept = "tmp";break;
       }
 
-      System.out.println("Checking Courses...");
       ArrayList<String> courses = GetEngInfo.getCourses(dept);
-      System.out.println("Found courses!");
       String[] data = courses.toArray(new String[courses.size()]);
-      System.out.println(data[0]);
       list.setListData(data);
 
       courseList.setViewportView(list);

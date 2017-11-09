@@ -20,7 +20,7 @@ public class GetGeInfoGUI extends JFrame implements ActionListener {
         this.getContentPane().setLayout(new FlowLayout());
         button = new JButton("Get description");
         list = new JList(data);
-        text = new JTextArea("Coures Description",9, 25);
+        text = new JTextArea("Course Description",9, 25);
         text.setLineWrap(true);
         text.setWrapStyleWord(true);
         button.addActionListener(this);

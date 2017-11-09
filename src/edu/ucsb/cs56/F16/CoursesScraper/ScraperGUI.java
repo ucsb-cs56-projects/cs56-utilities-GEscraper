@@ -31,25 +31,29 @@ public class ScraperGUI extends JFrame {
       buttonPane.add(Box.createRigidArea(new Dimension(20, 0)));
       buttonPane.add(engBtn);
       
-      add(Box.createRigidArea(new Dimension(0, 230)));
+      add(Box.createRigidArea(new Dimension(0, 130)));
       add(choices);
       add(Box.createRigidArea(new Dimension(0, 20)));
       add(buttonPane);
       
-      this.setSize(600, 600);
+      this.setSize(800, 420);
       this.setVisible(true);
     }
       
     private class EngListener implements ActionListener {
       public void actionPerformed(ActionEvent e) {
         getContentPane().removeAll();
+        add(new EngGUI());
+        add(Box.createRigidArea(new Dimension(0, 30)));
         getContentPane().repaint();
+        validate();
       }
     }
     
     private class GenListener implements ActionListener {
       public void actionPerformed(ActionEvent e) {
         getContentPane().removeAll();
+        GeGUI test = new GeGUI();
         getContentPane().repaint();
       }
     }
