@@ -81,6 +81,7 @@ public class ScraperGUI extends JFrame {
 
         add(homeBtnPane);
         add(new GeGUI());
+        add(Box.createRigidArea(new Dimension(0, 30)));
         getContentPane().repaint();
         validate();
       }

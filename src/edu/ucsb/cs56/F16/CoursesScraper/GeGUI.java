@@ -28,7 +28,6 @@ public class GeGUI extends JPanel{
     int i = 1;
     while (it.hasNext()) {
         Map.Entry pair = (Map.Entry)it.next();
-        System.out.println((String) pair.getKey() + " = " + (String) pair.getValue());
         departments[i] = (String) pair.getKey();
         it.remove();
         i++;
@@ -38,9 +37,7 @@ public class GeGUI extends JPanel{
     subjectDropdown = new JComboBox(choices);
     JLabel departmentLabel = new JLabel("Select Department: ");
     departmentDropdown = new JComboBox(departments);
-    /************************
-    Copy pasted from EngGUI. Was gonna change for GeGUI as I go through
-    ************************/
+
 
     JButton searchButton = new JButton("SEARCH");
     searchButton.addActionListener(new searchButtonListener());
