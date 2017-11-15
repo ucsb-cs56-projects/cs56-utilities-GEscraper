@@ -79,4 +79,7 @@ public class AreaUrlMappingTable {
 	public String getUrl_Eng(String area){
 		return urlPrefix_Eng + (String)table_Eng.get(area) + urlSuffix;
 	}
+	public Map getGEAreas() {
+		return table_GE;
+	}
 }
