@@ -91,6 +91,23 @@ public class GeGUI extends JPanel{
   }
 
     class searchButtonListener implements ActionListener{
+      public ArrayList<String> removeExcess(ArrayList<String> courses){
+        ArrayList<String> newArr = new ArrayList<String>();
+
+        for (int i = 0; i < courses.size(); i++){
+          String title = courses.get(i).substring(0,courses.get(i).indexOf('-'));
+          title.trim();
+          String newTitle = "";
+          for (int j = 0; j < title.length(); j++){
+            if(title.charAt(j) != ' '){
+              newTitle += title.charAt(j);
+            }
+          }
+          newArr.add(newTitle);
+        }
+
+        return newArr;
+      }
       public void actionPerformed(ActionEvent event){
         String subject = (String) subjectDropdown.getSelectedItem();
         String department = (String) departmentDropdown.getSelectedItem();
@@ -101,6 +118,8 @@ public class GeGUI extends JPanel{
         else{
           courses = GetGeInfo.getSpecificCourses(subject, department);
         }
+
+        ArrayList<String> newCourseTitles = removeExcess(courses);
 
         String[] data = courses.toArray(new String[courses.size()]);
         System.out.println(data[0]);
