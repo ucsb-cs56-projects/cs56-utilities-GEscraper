@@ -119,15 +119,6 @@ public class GeGUI extends JPanel{
           courses = GetGeInfo.getSpecificCourses(subject, department);
         }
 
-        ArrayList<String> newCourseTitles = removeExcess(courses);
-
-        String[] data = courses.toArray(new String[courses.size()]);
-        System.out.println(data[0]);
-        list.setListData(data);
-
-        courseList.setViewportView(list);
-        text.setText("");
-
         String year = String.valueOf(quarterDropdown.getSelectedItem()).substring(String.valueOf(quarterDropdown.getSelectedItem()).length()-4, String.valueOf(quarterDropdown.getSelectedItem()).length());
         String quarter = String.valueOf(quarterDropdown.getSelectedItem());
         String quarter2 = "";
@@ -146,10 +137,14 @@ public class GeGUI extends JPanel{
 
         String lev = "Undergraduate";
         String qtr = year + quarter2;
+
+        ArrayList<String> newCourseTitles = removeExcess(courses);
         //search with the corresponding selections in the gui
         try {
           cssc.loadCourses(department, qtr, lev);
           cssc.printLectures();
+
+          //CREATE LIST OF COURSE TITLES RETURNED
           ArrayList<UCSBLecture> lectureList = cssc.getLectures();
           ArrayList<String> lectureTitles = new ArrayList<String>();
           for(UCSBLecture l : lectureList) {
@@ -164,6 +159,21 @@ public class GeGUI extends JPanel{
 
             lectureTitles.add(titleMin);
           }
+
+          //MATCH COURSE TITLES TO GET FINAL LIST TO DISPLAY
+          ArrayList<String> toDisplay = new ArrayList<String>();
+          for(int i = 0; i < newCourseTitles.size(); i++) {
+            if(lectureTitles.indexOf(newCourseTitles.get(i)) != -1) {
+              toDisplay.add(courses.get(i));
+            }
+          }
+
+          String[] data = toDisplay.toArray(new String[toDisplay.size()]);
+          System.out.println(data[0]);
+          list.setListData(data);
+
+          courseList.setViewportView(list);
+          text.setText("");
         } catch(Exception e) {
           System.out.println(e);
           e.printStackTrace();
