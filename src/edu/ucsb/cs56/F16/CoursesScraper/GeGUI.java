@@ -131,6 +131,20 @@ public class GeGUI extends JPanel{
         try {
           cssc.loadCourses(department, qtr, lev);
           cssc.printLectures();
+          ArrayList<UCSBLecture> lectureList = cssc.getLectures();
+          ArrayList<String> lectureTitles = new ArrayList<String>();
+          for(UCSBLecture l : lectureList) {
+            String title = l.getCourseTitle();
+            String titleMin = "";
+
+            for(int i = 0; i < title.length(); i++) { //remove whitespace
+              if(title.charAt(i) != ' ') {
+                titleMin += title.charAt(i);
+              }
+            }
+
+            lectureTitles.add(titleMin);
+          }
         } catch(Exception e) {
           System.out.println(e);
           e.printStackTrace();
