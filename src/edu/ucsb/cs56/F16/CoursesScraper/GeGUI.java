@@ -18,6 +18,7 @@ public class GeGUI extends JPanel{
   private JButton getDescriptionButton;
   private AreaUrlMappingTable tb;
   private UCSBCurriculumSearch cssc;
+  String[] departments;
 
   public GeGUI(){
     try {
@@ -26,7 +27,7 @@ public class GeGUI extends JPanel{
       String[] choices = {"B", "C", "D", "E", "F", "G", "H", "WRT", "EUR", "QNT", "NWC", "ETH"};
       tb = new AreaUrlMappingTable();
       Map areas = tb.getGEAreas();
-      String[] departments = new String[areas.size()+1];
+      departments = new String[areas.size()+1];
       departments[0] = "None";
       Iterator it = areas.entrySet().iterator();
       int i = 1;
@@ -159,12 +160,23 @@ public class GeGUI extends JPanel{
 
         ArrayList<String> newCourseTitles = removeExcess(courses);
         //search with the corresponding selections in the gui
+        ArrayList<String> lectureTitles = new ArrayList<String>();
         try {
-          cssc.loadCourses(department, qtr, lev);
+          if(!department.equals("None")){
+            cssc.loadCourses(department, qtr, lev);
+            lectureTitles = removeWhitespace(cssc.getLectures());
+          }
+          else{
+            for(int i = 0; i < departments.length; i++){
+              department = departments[i];
+              System.out.println("Searching Department: " + department);
+              cssc.loadCourses(department, qtr, lev);
+              lectureTitles.addAll(removeWhitespace(cssc.getLectures()));
+            }
+          }
           cssc.printLectures();
 
           //CREATE LIST OF COURSE TITLES RETURNED
-          ArrayList<String> lectureTitles = removeWhitespace(cssc.getLectures());
 
           //MATCH COURSE TITLES TO GET FINAL LIST TO DISPLAY
           ArrayList<String> toDisplay = new ArrayList<String>();
