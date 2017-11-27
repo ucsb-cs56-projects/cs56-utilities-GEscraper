@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.projects.scrapers.ucsb_curriculum;
+package edu.ucsb.cs56.F16.CourseScraper;
 
 import java.util.ArrayList;
 
@@ -15,12 +15,12 @@ import java.util.ArrayList;
 
 
 public class UCSBLecture {
-    
+
     private String courseTitle; // e.g. "CMPSC     8"
     private String fullTitle;   // e.g. "Introduction to Computer Science"
     private String description; // e.g. "Introduction to computer program   development for students with little to no   programming experience. Basic programming   concepts, variables and expressions, data and control structures,   algorithms, debugging, program design, and documentation."
-    
-    private String preRequisite; // 
+
+    private String preRequisite; //
     private String college; // e.g. "ENGR"
     private double units; // e.g. 4.0
     private double grading; // e.g. "Letter"
@@ -78,12 +78,12 @@ public class UCSBLecture {
 		this.enrolled = enrolled;
 		this.capacity = capacity;
 		this.enrollCode = enrollCode;
-		
+
 	}
 
      /**
        Copy constructor does not set all the possible/needed attributes. TODO: Constructor with more params
-       
+
        @param orig object to be copied
 
      */
@@ -100,13 +100,13 @@ public class UCSBLecture {
 		this.enrolled = orig.enrolled;
 		this.capacity = orig.capacity;
 		this.enrollCode = orig.enrollCode;
-		
+
 	}
-	
+
 	/* Getters and Setters */
 	public String getCourseTitle(){ return courseTitle;}
 	public void setCourseTitle(String title){ this.courseTitle = title;}
-	
+
 	public String getPrimaryCourseAbbr(){ return primaryCourseAbbr;}
     public void setPrimaryCourseAbbr(String abbr){ this.primaryCourseAbbr = abbr;}
 
@@ -130,7 +130,7 @@ public class UCSBLecture {
 
     public int getCapacity(){ return capacity;}
     public void setCapacity(int capacity){ this.capacity = capacity;}
-	
+
 	public String getEnrollCode() { return enrollCode; }
 	public void setEnrollCode(String enrollCode) { this.enrollCode = enrollCode; }
 

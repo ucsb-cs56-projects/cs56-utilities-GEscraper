@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.projects.scrapers.ucsb_curriculum;
+package edu.ucsb.cs56.F16.CourseScraper;
 // Downloaded 1/1/2011 from http://blogs.sun.com/andreas/resource/InstallCert.java
 
 /*

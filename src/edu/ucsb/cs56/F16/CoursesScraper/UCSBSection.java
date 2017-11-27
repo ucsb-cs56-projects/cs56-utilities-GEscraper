@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.projects.scrapers.ucsb_curriculum;
+package edu.ucsb.cs56.F16.CourseScraper;
 
 /** UCSBSection -- Stores information from a single discussion section,
     plus contains a reference to the associated lecture section
@@ -19,7 +19,7 @@ public class UCSBSection {
     private String sectionRoom; // e.g. Chem 1171"
     private int enrolled; // e.g. from 63/88 take the 63
     private int capacity; // e.g. from 63/88 take the 88
-  
+
     /**
      * Default Constructor
      */
@@ -36,10 +36,10 @@ public class UCSBSection {
      @param enrolled integer object of the number of students that are enrolled in the class  e.g. from 63/88 take the 63
      @param capacity integer object of the amount of students that can enroll in the class  e.g. from 63/88 take the 88
     */
-    public UCSBSection(UCSBLecture parent, String status, String enrollCode, 
+    public UCSBSection(UCSBLecture parent, String status, String enrollCode,
     	String sectionDay, String sectionTime, String sectionRoom, int enrolled, int capacity)
     {
-	this.parent = parent;	
+	this.parent = parent;
 	this.status = status;
 	this.enrollCode = enrollCode;
 	this.sectionDay = sectionDay;
@@ -124,5 +124,5 @@ public class UCSBSection {
 	    return false;
 	return true;
     }
-    
+
 }

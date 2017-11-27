@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.projects.scrapers.ucsb_curriculum;
+package edu.ucsb.cs56.F16.CourseScraper;
 
 import javax.swing.*;
 
@@ -14,38 +14,38 @@ import javax.swing.ImageIcon;
 
 
 /** SearchGui_Curriculum -- Graphics User Interface for UCSBCurriculum search, going to be utilized within then Golder Scheduler app.
- 
+
  @author Jim Vargas
  @author Richard Young
  @author Natasha Lee
  @author Kevin Zaragoza
- @version W16 
- 
+ @version W16
+
  */
 
 public class SearchGui_Curriculum{
 	static  JFrame frame;
 
-	
+
 	public static void main (String [] args){
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run(){
 				displayJFrame();
 			}
 		} );
-	
+
 	}
-	
+
 	static void displayJFrame() {
 		try{
-			
+
 			frame = new JFrame();
-			
-			/* 
+
+			/*
 			 TODO: scrape the subject, years, and course levels so
 			 that if the website makes changes, it reflects in the program
 			*/
-			
+
 			//Array of all the different departmens on GOLD
 			UCSBCurriculumSearch cssc = new UCSBCurriculumSearch();
 			Object [] subject = cssc.findSubjectAreas(cssc.getMainPage()).toArray();
@@ -59,7 +59,7 @@ public class SearchGui_Curriculum{
 			    //	"LIT", "LIT CS", "MARSC", "MATRL", "MATH", "MATH CS", "ME", "MAT", "ME ST", "MES",
 			    //	"MS", "MCDB", "MUS", "MUS CS", "MUS A", "PHIL", "PHYS", "PHYS CS", "POL S", "PORT", "PSY", "RG ST",
 			    //	"RENST", "SLAV", "SOC", "SPAN", "SHS", "PSTAT", "TMP", "THTR", "WRIT", "W&L", "W&L CS"};
-			
+
 			/* Different quarters with their corresponding number ID (used by previous programmers
 			to identify each quarter */
 			Vector quarter = new Vector();
@@ -67,51 +67,51 @@ public class SearchGui_Curriculum{
 			quarter.addElement( new Item("2", "Spring"));
 			quarter.addElement( new Item("3", "Summer"));
 			quarter.addElement( new Item("4", "Fall"));
-			
+
 			//Array of years
 			String [] year = {"2016", "2015", "2014"};
-			
+
 			//Array of Course Levels
 			String [] level = {"Undergraduate", "Graduate", "ALL"};
-			
-			
+
+
 			//Creates ComboBoxes of the aforementioned search criteria
 			JComboBox subjectBox = new JComboBox(subject);
 			subjectBox.setEditable(false);
-			
+
 			JComboBox quarterBox = new JComboBox(quarter);
 			quarterBox.setEditable(false);
-			
+
 			JComboBox yearBox = new JComboBox(year);
 			yearBox.setEditable(false);
-			
+
 			JComboBox levelBox = new JComboBox(level);
 			levelBox.setEditable(false);
-			
+
 			//Search Button
 			JButton search = new JButton("SEARCH");
-			
-			
+
+
 			//Creates textArea that displays your search results
 			JTextArea textbox = new JTextArea(20, 40);
 			textbox.setEditable(false);
-			
+
 			//Redirects terminal output to GUI
 			PrintStream stream = new PrintStream(new CustomOutputStream(textbox));
 			System.setOut(stream);
 			System.setErr(stream);
-		
+
 			//Makes textarea scrollable
 			JScrollPane scrollbar = new JScrollPane(textbox);
-			
+
 			//get current user directory to display ucsb logo
 			String dir = System.getProperty("user.dir") + "/src/edu/ucsb/cs56/projects/scrapers/ucsb_curriculum/logo.png";
 			File logo = new File(dir);
 			BufferedImage myPicture = ImageIO.read(logo);
 			JLabel picLabel = new JLabel();
 			picLabel.setIcon(new ImageIcon(myPicture));
-			
-			
+
+
 			JPanel panel = new JPanel();
 			panel.setLayout(new GridBagLayout());
 			GridBagConstraints constraints = new GridBagConstraints();
@@ -169,11 +169,11 @@ public class SearchGui_Curriculum{
 			panel.add(yearBox);
 			panel.add(levelBox);
 			panel.add(search);*/
-		
+
 			//make textbox scrollable
 			//panel.add(scrollbar, constraints);
 			//
-			
+
 			//setting the layout of the gui
 			/*picLabel.setBounds(0,0,1280,120);
 			subjectBox.setBounds(445,200,80,20);
@@ -184,30 +184,30 @@ public class SearchGui_Curriculum{
 			scrollbar.setBounds(440,300,400,370);*/
 
 
-			
 
-			
+
+
 			search.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent ee) {
 					try{
 						//reset the textbox so it clears each time you press search
 						textbox.setText(null);
-						
+
 						//instantiate a new Curriculum search object
 						UCSBCurriculumSearch cssc = new UCSBCurriculumSearch();
-						
+
 						//get the values of the selections
 						String dept = String.valueOf(subjectBox.getSelectedItem());
-						
+
 						Item quarter = (Item) quarterBox.getSelectedItem();
 						String quarter2 = quarter.getId();
-						
+
 						String year = String.valueOf(yearBox.getSelectedItem());
 						String lev = String.valueOf(levelBox.getSelectedItem());
-						
-						
+
+
 						String qtr = year + quarter2;
-						
+
 						//search with the corresponding selections in the gui
 						cssc.loadCourses(dept, qtr, lev);
 						cssc.printLectures();
@@ -226,25 +226,18 @@ public class SearchGui_Curriculum{
 					}
 				}
 			} );
-			
+
 			//setup the JFrame
 			frame.setDefaultCloseOperation(JFrame. EXIT_ON_CLOSE) ;
 			frame.getContentPane().add(panel);
 			frame.setSize(910, 650);
 			frame.setVisible(true);
-			
-			
+
+
 		}catch(Exception e){
 			System.err.println(e);
 			e.printStackTrace();
 		}
-		
+
 	}
 }
-
-
-
-
-
-
-

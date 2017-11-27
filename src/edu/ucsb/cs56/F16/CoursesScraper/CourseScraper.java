@@ -20,8 +20,8 @@ import java.awt.FlowLayout;
 public class CourseScraper {
 	//main
 	public static void main(String args[]){
-
 		ScraperGUI startPage = new ScraperGUI();
+		
 	}//end main
 
 }//end GEscraper

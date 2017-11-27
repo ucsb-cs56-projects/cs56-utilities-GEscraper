@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.projects.scrapers.ucsb_curriculum;
+package edu.ucsb.cs56.F16.CourseScraper;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -13,14 +13,14 @@ import static org.junit.Assert.assertEquals;
 
 public class UCSBSectionTest {
 
-	
+
     @Test
 	public void test1() {
 		//initialize section parent
 		UCSBLecture parent =
 		new UCSBLecture("CMPSC 56", "Computer Science 56", "Full", "Conrad P",
 						"M W", "9:00am - 9:50am", "HFH 1132", 50, 50, "77872");
-		
+
 		//variables used for section testing
 		String status = "Full";
 		String enrollCode = "07989";
@@ -29,7 +29,7 @@ public class UCSBSectionTest {
 		String sectionRoom = "Chem 1171";
 		int enrolled = 63;
 		int capacity = 88;
-		
+
 		//Test Constructor
 		UCSBSection test1 = new UCSBSection(parent, status, enrollCode, sectionDay,
 		 sectionTime, sectionRoom, enrolled, capacity);
@@ -43,7 +43,7 @@ public class UCSBSectionTest {
 		assertEquals(sectionRoom, test1.getSectionRoom());
 		assertEquals(enrolled, test1.getEnrolled());
 		assertEquals(capacity, test1.getCapacity());
-		
+
 		//test tostring method
 		String expected = "\t Course Title: CMPSC 56\n"
 		+ "\t Section Status: Full\n"
@@ -53,17 +53,17 @@ public class UCSBSectionTest {
 		+ "\t Section Rm: Chem 1171\n"
 		+ "\t Enrolled / Capacity: 63 / 88\n";
 		assertEquals(expected, test1.toString());
-		
+
 
     }
-	
+
 	@Test
 	public void test2() {
 		//initialize section parent
 		UCSBLecture parent =
 		new UCSBLecture("CMPSC 64", "Computer Science 64", "", "Dewey K",
 						"T R", "3:30pm - 4:45pm", "Phelps 3526", 5, 80, "00000");
-		
+
 		//variables used for section testing
 		String status = "";
 		String enrollCode = "36555";
@@ -72,12 +72,12 @@ public class UCSBSectionTest {
 		String sectionRoom = "Phelps 3526";
 		int enrolled = 5;
 		int capacity = 80;
-		
+
 		//Test Constructor
 		UCSBSection test2 = new UCSBSection(parent, status, enrollCode, sectionDay,
 											sectionTime, sectionRoom, enrolled, capacity);
-		
-		
+
+
 		//test getter methods
 		assertEquals(parent, test2.getParent());
 		assertEquals(status, test2.getStatus());
@@ -87,7 +87,7 @@ public class UCSBSectionTest {
 		assertEquals(sectionRoom, test2.getSectionRoom());
 		assertEquals(enrolled, test2.getEnrolled());
 		assertEquals(capacity, test2.getCapacity());
-		
+
 		//test tostring method
 		String expected = "\t Course Title: CMPSC 64\n"
 		+ "\t Section Status: \n"
@@ -97,10 +97,10 @@ public class UCSBSectionTest {
 		+ "\t Section Rm: Phelps 3526\n"
 		+ "\t Enrolled / Capacity: 5 / 80\n";
 		assertEquals(expected, test2.toString());
-		
+
 	}
-	
-	
+
+
 	@Test
 	public void test3() {
 		//initialize section parent
@@ -116,11 +116,11 @@ public class UCSBSectionTest {
 		String sectionRoom = "Girv 2119";
 		int enrolled = 0;
 		int capacity = 40;
-		
+
 		//Test Constructor
 		UCSBSection test3 = new UCSBSection(parent, status, enrollCode, sectionDay,
 											sectionTime, sectionRoom, enrolled, capacity);
-		
+
 		//test setter methods
 		test3.setParent(parent);
 		test3.setStatus(status);
@@ -140,7 +140,7 @@ public class UCSBSectionTest {
 		assertEquals(sectionRoom, test3.getSectionRoom());
 		assertEquals(enrolled, test3.getEnrolled());
 		assertEquals(capacity, test3.getCapacity());
-		
+
 		//test tostring method
 		String expected = "\t Course Title: ECON 10A\n"
 		+ "\t Section Status: Closed\n"
@@ -152,7 +152,7 @@ public class UCSBSectionTest {
 		assertEquals(expected, test3.toString());
 
 
-		
+
 	}
 
 }

@@ -1,4 +1,4 @@
-package edu.ucsb.cs56.projects.scrapers.ucsb_curriculum;
+package edu.ucsb.cs56.F16.CourseScraper;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 */
 
 public class UCSBLectureTest {
-    
+
 // Init some variables to be used
 	String courseTitle = "CMPSC     8";
 	String primaryCourseAbbr = "INTRO TO COMP SCI";
@@ -31,9 +31,9 @@ public class UCSBLectureTest {
      @Test
 	public void test_Constructor() {
 
-	
 
-	UCSBLecture lecture = 
+
+	UCSBLecture lecture =
 	    new UCSBLecture(courseTitle, primaryCourseAbbr, status, instructor,
 			    lectDays, lectTime, lectRoom, enrolled, capacity, enrollCode);
 
@@ -92,6 +92,6 @@ public class UCSBLectureTest {
 
         assertEquals(expected, lecture.toString());
     }
-    
+
 
 }
