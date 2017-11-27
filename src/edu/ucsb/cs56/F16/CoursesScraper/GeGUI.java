@@ -91,7 +91,7 @@ public class GeGUI extends JPanel{
   }
 
     class searchButtonListener implements ActionListener{
-      public ArrayList<String> removeExcess(ArrayList<String> courses){
+      private ArrayList<String> removeExcess(ArrayList<String> courses){
         ArrayList<String> newArr = new ArrayList<String>();
 
         for (int i = 0; i < courses.size(); i++){
@@ -108,6 +108,36 @@ public class GeGUI extends JPanel{
 
         return newArr;
       }
+
+      private ArrayList<String> removeWhitespace(ArrayList<UCSBLecture> lectureList) {
+        ArrayList<String> lectureTitles = new ArrayList<String>();
+        for(UCSBLecture l : lectureList) {
+          String title = l.getCourseTitle();
+          String titleMin = "";
+
+          for(int i = 0; i < title.length(); i++) { //remove whitespace
+            if(title.charAt(i) != ' ') {
+              titleMin += title.charAt(i);
+            }
+          }
+
+          lectureTitles.add(titleMin);
+        }
+
+        return lectureTitles;
+      }
+
+      private ArrayList<String> matchLists(ArrayList<String> l1, ArrayList<String> l2, ArrayList<String> courses) {
+        ArrayList<String> toDisplay = new ArrayList<String>();
+        for(int i = 0; i < l1.size(); i++) {
+          if(l2.indexOf(l1.get(i)) != -1) {
+            toDisplay.add(courses.get(i));
+          }
+        }
+
+        return toDisplay;
+      }
+
       public void actionPerformed(ActionEvent event){
         String subject = (String) subjectDropdown.getSelectedItem();
         String department = (String) departmentDropdown.getSelectedItem();
@@ -145,28 +175,10 @@ public class GeGUI extends JPanel{
           cssc.printLectures();
 
           //CREATE LIST OF COURSE TITLES RETURNED
-          ArrayList<UCSBLecture> lectureList = cssc.getLectures();
-          ArrayList<String> lectureTitles = new ArrayList<String>();
-          for(UCSBLecture l : lectureList) {
-            String title = l.getCourseTitle();
-            String titleMin = "";
-
-            for(int i = 0; i < title.length(); i++) { //remove whitespace
-              if(title.charAt(i) != ' ') {
-                titleMin += title.charAt(i);
-              }
-            }
-
-            lectureTitles.add(titleMin);
-          }
+          ArrayList<String> lectureTitles = removeWhitespace(cssc.getLectures());
 
           //MATCH COURSE TITLES TO GET FINAL LIST TO DISPLAY
-          ArrayList<String> toDisplay = new ArrayList<String>();
-          for(int i = 0; i < newCourseTitles.size(); i++) {
-            if(lectureTitles.indexOf(newCourseTitles.get(i)) != -1) {
-              toDisplay.add(courses.get(i));
-            }
-          }
+          ArrayList<String> toDisplay = matchLists(newCourseTitles, lectureTitles, courses);
 
           String[] data = toDisplay.toArray(new String[toDisplay.size()]);
           System.out.println(data[0]);
