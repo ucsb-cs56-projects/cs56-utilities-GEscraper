@@ -189,7 +189,9 @@ public class UCSBCurriculumSearch {
 
       page = page.substring(0, page.lastIndexOf("</table>"));
       //next line causes problems
-      page = page.substring(0, page.lastIndexOf("</table>"));
+      if(page.lastIndexOf("</table>") != -1){
+        page = page.substring(0, page.lastIndexOf("</table>"));
+      }
     }
     catch (Exception e) {
       throw new Exception ("webpage did not have expected structure"+origpage);
