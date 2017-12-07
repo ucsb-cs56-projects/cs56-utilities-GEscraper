@@ -73,3 +73,7 @@ So, the lesson we learned is that we write code to meet customers' needs. There 
 - There is some reused code. Future groups can further refactor the code by creating more general classes that others inherit from.
 - The GUI uses FlowLayout now, future groups can change the code to make the GUI looks same in different computer.
 - The fisrt GUI window can't be closed now. Future groups can fix this bug.
+
+F17 Final Remarks
+
+This code is mainly set up in the EngGUI, ScraperGUI, and GeGUI. ScraperGUI contains the main method. The other two GUI files rely on the scraper files (GetEngInfo, GetGeInfo) to pull course information from external websites and display it to the user. We also implemented a mashup with UCSB Curriculum scraper. Currently, the UCSB Curriculum scraper files are in our repo. In the future, those files should be removed and instead the project should be used as a library. In the future, more details on enrollment history for past quarters could be added as well. Error handling could be implemented as well for when scraping fails (a course isn't found based on the filters entered). In general, make sure you understand what the purpose of each file is before trying to modify or use it. Make comments to document any changes you make.
